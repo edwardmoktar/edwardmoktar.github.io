@@ -1,11 +1,17 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronRight, BarChart2, Rocket, Gamepad2, Award } from 'lucide-react';
+import { ChevronRight, BarChart2, Rocket, Gamepad2, X } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import { Card, CardHeader, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import {
   HoverCard,
   HoverCardContent,
@@ -166,7 +172,7 @@ const duplicatedProjects = [
 ];
 
 export default function Projects() {
-  const [expandedId, setExpandedId] = useState<number | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
     <Layout>
@@ -175,7 +181,6 @@ export default function Projects() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {duplicatedProjects.map((project, index) => {
             const IconComponent = icons[project.icon];
-            const isExpanded = expandedId === project.id;
 
             return (
               <motion.div
@@ -186,10 +191,8 @@ export default function Projects() {
                 className="h-full"
               >
                 <Card
-                  className={`h-full hover:shadow-lg transition-all cursor-pointer ${
-                    isExpanded ? 'ring-2 ring-primary' : ''
-                  }`}
-                  onClick={() => setExpandedId(isExpanded ? null : project.id)}
+                  className="h-full hover:shadow-lg transition-all cursor-pointer"
+                  onClick={() => setSelectedProject(project)}
                 >
                   <div className="relative aspect-video w-full">
                     <img
@@ -211,102 +214,119 @@ export default function Projects() {
                   </CardHeader>
                   <CardContent>
                     <p className="mb-4">{project.description}</p>
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <div className="flex flex-wrap gap-2">
                       {project.techStack.map((tech, i) => (
                         <Badge key={i} variant="secondary">
                           {tech}
                         </Badge>
                       ))}
                     </div>
-
-                    {isExpanded && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="space-y-6 mt-4"
-                      >
-                        <div className="grid gap-4">
-                          <div className="space-y-2">
-                            <h3 className="font-semibold">The Challenge</h3>
-                            <p className="text-muted-foreground">{project.problem}</p>
-                          </div>
-                          <div className="space-y-2">
-                            <h3 className="font-semibold">The Solution</h3>
-                            <p className="text-muted-foreground">{project.solution}</p>
-                          </div>
-                        </div>
-
-                        <div className="space-y-4">
-                          <h3 className="font-semibold">Media Gallery</h3>
-                          <div className="grid gap-4">
-                            {project.media.map((item, index) => (
-                              <div key={index} className="space-y-2">
-                                {item.type === 'video' ? (
-                                  <video
-                                    src={item.url}
-                                    controls
-                                    className="w-full rounded-lg"
-                                  />
-                                ) : (
-                                  <img
-                                    src={item.url}
-                                    alt={item.caption}
-                                    className="w-full rounded-lg"
-                                  />
-                                )}
-                                <p className="text-sm text-muted-foreground">
-                                  {item.caption}
-                                </p>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-
-                        <div>
-                          <h3 className="font-semibold mb-4">Impact & Results</h3>
-                          <div className="h-[200px] mb-6">
-                            <ResponsiveContainer width="100%" height="100%">
-                              <BarChart data={project.impact.metrics}>
-                                <XAxis dataKey="label" />
-                                <YAxis />
-                                <Tooltip />
-                                <Bar dataKey="before" fill="#94a3b8" name="Before" />
-                                <Bar dataKey="after" fill="hsl(var(--primary))" name="After" />
-                              </BarChart>
-                            </ResponsiveContainer>
-                          </div>
-
-                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                            {project.impact.stats.map((stat, i) => (
-                              <HoverCard key={i}>
-                                <HoverCardTrigger>
-                                  <div className="p-4 rounded-lg bg-accent/5 hover:bg-accent/10 transition-colors">
-                                    <div className="text-2xl font-bold text-primary">
-                                      {stat.value}
-                                    </div>
-                                    <div className="text-sm text-muted-foreground">
-                                      {stat.label}
-                                    </div>
-                                  </div>
-                                </HoverCardTrigger>
-                                <HoverCardContent>
-                                  <div className="text-sm">
-                                    Click to learn more about this metric
-                                  </div>
-                                </HoverCardContent>
-                              </HoverCard>
-                            ))}
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
                   </CardContent>
                 </Card>
               </motion.div>
             );
           })}
         </div>
+
+        <Dialog open={selectedProject !== null} onOpenChange={() => setSelectedProject(null)}>
+          {selectedProject && (
+            <DialogContent className="max-w-4xl w-[90vw] max-h-[90vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle className="text-2xl font-bold flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                    {icons[selectedProject.icon] && 
+                      React.createElement(icons[selectedProject.icon], {
+                        className: "w-6 h-6 text-primary"
+                      })
+                    }
+                  </div>
+                  <div>
+                    <h2>{selectedProject.title}</h2>
+                    <p className="text-base font-normal text-muted-foreground">
+                      {selectedProject.subtitle}
+                    </p>
+                  </div>
+                </DialogTitle>
+              </DialogHeader>
+
+              <div className="space-y-6">
+                <div className="grid gap-4">
+                  <div className="space-y-2">
+                    <h3 className="text-lg font-semibold">The Challenge</h3>
+                    <p className="text-muted-foreground">{selectedProject.problem}</p>
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="text-lg font-semibold">The Solution</h3>
+                    <p className="text-muted-foreground">{selectedProject.solution}</p>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold">Media Gallery</h3>
+                  <div className="grid gap-4">
+                    {selectedProject.media.map((item, index) => (
+                      <div key={index} className="space-y-2">
+                        {item.type === 'video' ? (
+                          <video
+                            src={item.url}
+                            controls
+                            className="w-full rounded-lg"
+                          />
+                        ) : (
+                          <img
+                            src={item.url}
+                            alt={item.caption}
+                            className="w-full rounded-lg"
+                          />
+                        )}
+                        <p className="text-sm text-muted-foreground">
+                          {item.caption}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-lg font-semibold mb-4">Impact & Results</h3>
+                  <div className="h-[300px] mb-6">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart data={selectedProject.impact.metrics}>
+                        <XAxis dataKey="label" />
+                        <YAxis />
+                        <Tooltip />
+                        <Bar dataKey="before" fill="#94a3b8" name="Before" />
+                        <Bar dataKey="after" fill="hsl(var(--primary))" name="After" />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    {selectedProject.impact.stats.map((stat, i) => (
+                      <HoverCard key={i}>
+                        <HoverCardTrigger>
+                          <div className="p-4 rounded-lg bg-accent/5 hover:bg-accent/10 transition-colors">
+                            <div className="text-2xl font-bold text-primary">
+                              {stat.value}
+                            </div>
+                            <div className="text-sm text-muted-foreground">
+                              {stat.label}
+                            </div>
+                          </div>
+                        </HoverCardTrigger>
+                        <HoverCardContent>
+                          <div className="text-sm">
+                            Click to learn more about this metric
+                          </div>
+                        </HoverCardContent>
+                      </HoverCard>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </DialogContent>
+          )}
+        </Dialog>
       </div>
     </Layout>
   );
