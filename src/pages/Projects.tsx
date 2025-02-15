@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronRight, BarChart2, Rocket, Gamepad2 } from 'lucide-react';
+import { ChevronRight, BarChart2, Rocket, Gamepad2, Award } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import { Card, CardHeader, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -117,7 +117,7 @@ export default function Projects() {
     <Layout>
       <div className="container mx-auto px-6 py-12">
         <h1 className="text-4xl font-bold mb-8 fade-in">Case Studies</h1>
-        <div className="grid grid-cols-1 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => {
             const IconComponent = icons[project.icon];
             const isExpanded = expandedId === project.id;
@@ -128,9 +128,10 @@ export default function Projects() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
+                className="h-full"
               >
                 <Card
-                  className={`hover:shadow-lg transition-all cursor-pointer ${
+                  className={`h-full hover:shadow-lg transition-all cursor-pointer ${
                     isExpanded ? 'ring-2 ring-primary' : ''
                   }`}
                   onClick={() => setExpandedId(isExpanded ? null : project.id)}
@@ -163,7 +164,7 @@ export default function Projects() {
                         exit={{ opacity: 0, height: 0 }}
                         className="space-y-6 mt-4"
                       >
-                        <div className="grid md:grid-cols-2 gap-6">
+                        <div className="grid gap-4">
                           <div className="space-y-2">
                             <h3 className="font-semibold">The Challenge</h3>
                             <p className="text-muted-foreground">{project.problem}</p>
@@ -176,7 +177,7 @@ export default function Projects() {
 
                         <div>
                           <h3 className="font-semibold mb-4">Impact & Results</h3>
-                          <div className="h-[300px] mb-6">
+                          <div className="h-[200px] mb-6">
                             <ResponsiveContainer width="100%" height="100%">
                               <BarChart data={project.impact.metrics}>
                                 <XAxis dataKey="label" />
@@ -188,7 +189,7 @@ export default function Projects() {
                             </ResponsiveContainer>
                           </div>
 
-                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             {project.impact.stats.map((stat, i) => (
                               <HoverCard key={i}>
                                 <HoverCardTrigger>
