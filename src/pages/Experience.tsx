@@ -57,8 +57,8 @@ const experiences: Experience[] = [
       },
       {
         icon: "award",
-        metric: "$400K+",
-        description: "Secured in grants"
+        metric: "$1.7+",
+        description: "NFT Assets Managed"
       }
     ],
     insights: "Scaling Web3 gaming communities requires a delicate balance between automation and personal touch",
