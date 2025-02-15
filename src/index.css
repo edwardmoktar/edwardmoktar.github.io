@@ -118,3 +118,31 @@
 .company-logo {
   @apply transition-all duration-300 opacity-60 hover:opacity-100;
 }
+
+.floating-image {
+  @apply transition-all duration-500;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.floating-image:hover {
+  @apply shadow-2xl;
+  transform: translateY(-10px) rotateX(5deg);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
