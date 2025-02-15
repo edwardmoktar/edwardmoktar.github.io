@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronRight, BarChart2, Rocket, Gamepad2, X } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
@@ -234,11 +234,11 @@ export default function Projects() {
               <DialogHeader>
                 <DialogTitle className="text-2xl font-bold flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                    {icons[selectedProject.icon] && 
-                      React.createElement(icons[selectedProject.icon], {
-                        className: "w-6 h-6 text-primary"
-                      })
-                    }
+                    {selectedProject.icon && icons[selectedProject.icon] && (
+                      <div className="w-6 h-6 text-primary">
+                        {React.createElement(icons[selectedProject.icon])}
+                      </div>
+                    )}
                   </div>
                   <div>
                     <h2>{selectedProject.title}</h2>
