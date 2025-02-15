@@ -18,6 +18,12 @@ interface Project {
   title: string;
   subtitle: string;
   description: string;
+  image: string;
+  media: {
+    type: 'image' | 'video' | 'gif';
+    url: string;
+    caption: string;
+  }[];
   icon: keyof typeof icons;
   techStack: string[];
   problem: string;
@@ -47,6 +53,19 @@ const projects: Project[] = [
     title: "Dune Wizard",
     subtitle: "Web3 Analytics Dashboard",
     description: "Advanced analytics platform for blockchain data visualization and insights",
+    image: "/placeholder.svg",
+    media: [
+      {
+        type: 'image',
+        url: '/placeholder.svg',
+        caption: 'Dashboard Overview'
+      },
+      {
+        type: 'image',
+        url: '/placeholder.svg',
+        caption: 'Analytics Interface'
+      }
+    ],
     icon: "chart",
     techStack: ["DuneSQL", "React", "TypeScript", "GraphQL", "Web3.js"],
     problem: "Complex blockchain data was difficult to analyze and visualize for non-technical users",
@@ -69,6 +88,19 @@ const projects: Project[] = [
     title: "BatchSmarter",
     subtitle: "AI-Powered Logistics Automation",
     description: "Intelligent automation platform for logistics and supply chain operations",
+    image: "/placeholder.svg",
+    media: [
+      {
+        type: 'image',
+        url: '/placeholder.svg',
+        caption: 'Logistics Dashboard'
+      },
+      {
+        type: 'video',
+        url: '/placeholder.svg',
+        caption: 'Route Optimization Demo'
+      }
+    ],
     icon: "rocket",
     techStack: ["Python", "TensorFlow", "FastAPI", "React", "PostgreSQL"],
     problem: "Manual logistics processes were causing delays and errors in operations",
@@ -91,6 +123,19 @@ const projects: Project[] = [
     title: "Web3 GameFi Ops",
     subtitle: "Gaming Community Platform",
     description: "Comprehensive operations platform for Web3 gaming communities",
+    image: "/placeholder.svg",
+    media: [
+      {
+        type: 'gif',
+        url: '/placeholder.svg',
+        caption: 'Community Dashboard'
+      },
+      {
+        type: 'image',
+        url: '/placeholder.svg',
+        caption: 'Analytics Overview'
+      }
+    ],
     icon: "game",
     techStack: ["Solidity", "React", "Node.js", "MongoDB", "Web3.js"],
     problem: "Scaling gaming communities while maintaining engagement was challenging",
@@ -110,6 +155,16 @@ const projects: Project[] = [
   }
 ];
 
+// Duplicate projects with new IDs
+const duplicatedProjects = [
+  ...projects,
+  ...projects.map(project => ({
+    ...project,
+    id: project.id + 3,
+    title: `${project.title} 2.0`
+  }))
+];
+
 export default function Projects() {
   const [expandedId, setExpandedId] = useState<number | null>(null);
 
@@ -117,8 +172,8 @@ export default function Projects() {
     <Layout>
       <div className="container mx-auto px-6 py-12">
         <h1 className="text-4xl font-bold mb-8 fade-in">Case Studies</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => {
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {duplicatedProjects.map((project, index) => {
             const IconComponent = icons[project.icon];
             const isExpanded = expandedId === project.id;
 
@@ -136,6 +191,13 @@ export default function Projects() {
                   }`}
                   onClick={() => setExpandedId(isExpanded ? null : project.id)}
                 >
+                  <div className="relative aspect-video w-full">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="object-cover w-full h-full rounded-t-lg"
+                    />
+                  </div>
                   <CardHeader>
                     <div className="flex items-start gap-4">
                       <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
@@ -172,6 +234,32 @@ export default function Projects() {
                           <div className="space-y-2">
                             <h3 className="font-semibold">The Solution</h3>
                             <p className="text-muted-foreground">{project.solution}</p>
+                          </div>
+                        </div>
+
+                        <div className="space-y-4">
+                          <h3 className="font-semibold">Media Gallery</h3>
+                          <div className="grid gap-4">
+                            {project.media.map((item, index) => (
+                              <div key={index} className="space-y-2">
+                                {item.type === 'video' ? (
+                                  <video
+                                    src={item.url}
+                                    controls
+                                    className="w-full rounded-lg"
+                                  />
+                                ) : (
+                                  <img
+                                    src={item.url}
+                                    alt={item.caption}
+                                    className="w-full rounded-lg"
+                                  />
+                                )}
+                                <p className="text-sm text-muted-foreground">
+                                  {item.caption}
+                                </p>
+                              </div>
+                            ))}
                           </div>
                         </div>
 
