@@ -31,25 +31,23 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { path: '/', label: 'Home' },
-    { path: '/experience', label: 'Experience' },
+    { path: '/path', label: 'Path' },
     { path: '/projects', label: 'Projects' },
     { path: '/skills', label: 'Skills' },
-    { path: '/contact', label: 'Contact' },
   ];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b">
       <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <Link to="/" className="text-xl font-semibold hover-lift">
+        <div className="flex items-center justify-between md:justify-center">
+          <Link to="/" className="text-xl font-semibold hover-lift md:hidden">
             Edward M.
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-12">
             {navLinks.map((link) => (
-              <Link key={link.path} to={link.path} className="nav-link">
+              <Link key={link.path} to={link.path} className="nav-link text-lg">
                 {link.label}
               </Link>
             ))}
