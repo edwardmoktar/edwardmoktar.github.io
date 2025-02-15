@@ -76,7 +76,7 @@ const experiences: Experience[] = [
   },
   {
     id: 2,
-    title: "Innovation Strategist",
+    title: "Project Manager",
     company: "Tech Consultancy",
     period: "2020 - 2022",
     description: "Developed and implemented AI-powered solutions for enterprise clients",
