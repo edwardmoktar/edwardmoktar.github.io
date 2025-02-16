@@ -15,6 +15,7 @@ interface TimelineNode {
   image: string;
   x: number;
   y: number;
+  sectionId: string;
 }
 
 export default function Path() {
@@ -34,7 +35,8 @@ export default function Path() {
       icon: Book,
       image: "/lovable-uploads/36c94fc0-25f4-43e4-b565-9d1854d60b81.png",
       x: 20,
-      y: 30
+      y: 30,
+      sectionId: "education"
     },
     {
       id: 2,
@@ -45,7 +47,8 @@ export default function Path() {
       icon: Heart,
       image: "/placeholder.svg",
       x: 50,
-      y: 70
+      y: 70,
+      sectionId: "volunteering"
     },
     {
       id: 3,
@@ -56,19 +59,35 @@ export default function Path() {
       icon: Briefcase,
       image: "/placeholder.svg",
       x: 80,
-      y: 30
+      y: 30,
+      sectionId: "professional"
     },
   ];
 
-  const pathPoints = Array.from({ length: 100 }, (_, i) => {
-    const x = i;
-    const y = Math.sin((i / 100) * Math.PI * 2) * 20 + 50;
-    return `${x},${y}`;
-  }).join(' L ');
+  const generateSineWave = () => {
+    const points = [];
+    const amplitude = 20;
+    const frequency = Math.PI;
+    
+    for (let i = 0; i <= 100; i++) {
+      const x = i;
+      const y = 50 - amplitude * Math.sin(frequency * (i / 100));
+      points.push(`${x},${y}`);
+    }
+    
+    return points.join(' L ');
+  };
 
   const pathAnimation = {
     strokeDasharray: 1000,
     strokeDashoffset: useTransform(scrollYProgress, [0, 0.5], [1000, 0])
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   useEffect(() => {
@@ -89,7 +108,7 @@ export default function Path() {
   return (
     <Layout>
       <div className={cn(
-        "min-h-screen transition-colors duration-1000",
+        "min-h-screen transition-all duration-1000",
         theme === 'dark' 
           ? 'bg-gradient-to-b from-[#1A1F2C] to-[#221F26]' 
           : 'bg-gradient-to-b from-[#FEF7CD] to-[#FEC6A1]'
@@ -97,8 +116,8 @@ export default function Path() {
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div
             className={cn(
-              "absolute w-64 h-64 rounded-full blur-3xl opacity-20",
-              theme === 'dark' ? 'bg-white' : 'bg-[#F97316]'
+              "absolute w-64 h-64 rounded-full blur-3xl",
+              theme === 'dark' ? 'bg-white opacity-20' : 'bg-[#F97316] opacity-30'
             )}
             style={{
               top: '10%',
@@ -106,7 +125,7 @@ export default function Path() {
             }}
             animate={{
               scale: [1, 1.2, 1],
-              opacity: [0.2, 0.3, 0.2],
+              opacity: theme === 'dark' ? [0.2, 0.3, 0.2] : [0.3, 0.4, 0.3],
             }}
             transition={{
               duration: 8,
@@ -115,11 +134,23 @@ export default function Path() {
             }}
           />
           
-          <div className="absolute inset-0 opacity-5"
+          {theme === 'dark' && (
+            <div className="absolute inset-0 stars opacity-40" />
+          )}
+          
+          <motion.div 
+            className="absolute inset-0 opacity-5"
             style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,10 Q25,20 50,10 T100,10' stroke='%23000' fill='none'/%3E%3C/svg%3E")`,
-              backgroundSize: '100px 20px',
-              backgroundRepeat: 'repeat'
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,100 Q50,80 100,100 T200,100 M0,150 Q50,130 100,150 T200,150' stroke='%23000' fill='none' stroke-width='0.5'/%3E%3C/svg%3E")`,
+              backgroundSize: '200px 200px',
+            }}
+            animate={{
+              backgroundPosition: ['0% 0%', '100% 100%'],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
             }}
           />
         </div>
@@ -147,7 +178,7 @@ export default function Path() {
               preserveAspectRatio="none"
             >
               <motion.path
-                d={`M 0,50 L ${pathPoints}`}
+                d={`M 0,50 L ${generateSineWave()}`}
                 fill="none"
                 stroke="hsl(var(--primary))"
                 strokeWidth="0.5"
@@ -174,6 +205,7 @@ export default function Path() {
                   className="relative"
                   onHoverStart={() => setHoveredNode(node.id)}
                   onHoverEnd={() => setHoveredNode(null)}
+                  onClick={() => scrollToSection(node.sectionId)}
                   whileHover={{ scale: 1.1 }}
                 >
                   <div className="relative">
@@ -216,6 +248,9 @@ export default function Path() {
                       </div>
                       <p className="text-sm text-muted-foreground mb-2">{node.subtitle} - {node.year}</p>
                       <p className="text-sm">{node.description}</p>
+                      <div className="mt-2 text-sm text-primary italic">
+                        Click to explore {node.title.toLowerCase()}
+                      </div>
                     </motion.div>
                   )}
                 </motion.div>
@@ -245,6 +280,33 @@ export default function Path() {
                 theme === 'dark' ? 'bg-white/10' : 'bg-primary/10'
               )} />
             </motion.div>
+          </div>
+        </div>
+
+        <div id="education" className="py-24">
+          <div className="text-left max-w-2xl space-y-4">
+            <h1 className="text-5xl font-bold">Education</h1>
+            <p className="text-lg text-muted-foreground">
+              Discover my professional path and experiences.
+            </p>
+          </div>
+        </div>
+        
+        <div id="volunteering" className="py-24">
+          <div className="text-left max-w-2xl space-y-4">
+            <h1 className="text-5xl font-bold">Volunteering</h1>
+            <p className="text-lg text-muted-foreground">
+              Discover my professional path and experiences.
+            </p>
+          </div>
+        </div>
+        
+        <div id="professional" className="py-24">
+          <div className="text-left max-w-2xl space-y-4">
+            <h1 className="text-5xl font-bold">Professional Experience</h1>
+            <p className="text-lg text-muted-foreground">
+              Discover my professional path and experiences.
+            </p>
           </div>
         </div>
       </div>
