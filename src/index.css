@@ -159,7 +159,10 @@ html {
   background-size: 24px 24px;
 }
 
-/* Desert theme animations */
+.theme-transition {
+  @apply transition-all duration-1000;
+}
+
 @keyframes sandDrift {
   0% {
     background-position: 0% 0%;
@@ -171,4 +174,33 @@ html {
 
 .sand-drift {
   animation: sandDrift 20s linear infinite;
+}
+
+.parallax {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.ripple {
+  animation: ripple 1s ease-out;
+}
+
+.stars {
+  background-image: radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+                    radial-gradient(2px 2px at 40px 70px, #ffffff, rgba(0,0,0,0)),
+                    radial-gradient(2px 2px at 50px 160px, #ffffff, rgba(0,0,0,0)),
+                    radial-gradient(2px 2px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+                    radial-gradient(2px 2px at 130px 80px, #ffffff, rgba(0,0,0,0));
+  background-size: 200px 200px;
 }
