@@ -1,16 +1,20 @@
+
 import { useEffect, useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Sparkles, Rocket } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import Layout from '@/components/layout/Layout';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { Link } from 'react-router-dom';
 
 export default function Index() {
   const [isVisible, setIsVisible] = useState(false);
-  const { scrollY } = useScroll();
-
-  const y1 = useTransform(scrollY, [0, 300], [0, -50]);
-  const y2 = useTransform(scrollY, [0, 300], [0, 50]);
-  const opacity = useTransform(scrollY, [0, 200], [0, 1]);
 
   useEffect(() => {
     setIsVisible(true);
@@ -131,111 +135,149 @@ export default function Index() {
         </motion.div>
 
         {/* Mission Statements Section */}
-        <div className="py-24 space-y-32">
-          <div className="relative">
+        <div className="py-24 space-y-48">
+          {/* First Mission Statement */}
+          <div className="max-w-3xl mx-auto">
             <motion.div 
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="max-w-2xl mx-auto text-center space-y-6 z-10 relative"
+              className="text-center space-y-8"
             >
-              <h2 className="text-4xl font-bold">Bridging Creativity and Functionality</h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
+              <div className="flex justify-center">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Sparkles className="w-6 h-6 text-primary" />
+                </div>
+              </div>
+              <h2 className="text-3xl font-bold">Bridging Creativity and Functionality</h2>
+              <p className="text-base text-muted-foreground leading-relaxed max-w-2xl mx-auto">
                 I believe that great design exists at the intersection of creativity and functionality. 
                 My work focuses on crafting innovative solutions that are not only visually compelling 
                 but also user-centric and purposeful. From brainstorming to delivery, I strive to build 
                 digital experiences that resonate with users and achieve meaningful results.
               </p>
-            </motion.div>
 
-            <motion.div 
-              style={{ y: y1 }}
-              className="absolute -left-20 top-0 w-72 h-72 -rotate-6 z-0"
-            >
-              <motion.div
-                whileHover={{ scale: 1.05, rotate: -3 }}
-                transition={{ duration: 0.3 }}
-                className="w-full h-full rounded-lg overflow-hidden shadow-xl"
-              >
-                <img 
-                  src={projectImages[0]} 
-                  alt="Project Preview" 
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-            </motion.div>
-
-            <motion.div 
-              style={{ y: y2 }}
-              className="absolute -right-20 bottom-0 w-64 h-64 rotate-6 z-0"
-            >
-              <motion.div
-                whileHover={{ scale: 1.05, rotate: 3 }}
-                transition={{ duration: 0.3 }}
-                className="w-full h-full rounded-lg overflow-hidden shadow-xl"
-              >
-                <img 
-                  src={projectImages[1]} 
-                  alt="Project Preview" 
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
+              <div className="mt-12">
+                <Carousel
+                  opts={{
+                    align: "start",
+                    loop: true,
+                  }}
+                  className="w-full max-w-4xl mx-auto"
+                >
+                  <CarouselContent>
+                    {projectImages.slice(0, 2).map((image, index) => (
+                      <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/2">
+                        <motion.div
+                          whileHover={{ scale: 1.05 }}
+                          transition={{ duration: 0.3 }}
+                          className="relative aspect-video rounded-lg overflow-hidden shadow-lg"
+                        >
+                          <img 
+                            src={image} 
+                            alt={`Project ${index + 1}`}
+                            className="w-full h-full object-cover"
+                          />
+                        </motion.div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious />
+                  <CarouselNext />
+                </Carousel>
+              </div>
             </motion.div>
           </div>
 
-          <div className="relative mt-32">
+          {/* Second Mission Statement */}
+          <div className="max-w-3xl mx-auto">
             <motion.div 
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="max-w-2xl mx-auto text-center space-y-6 z-10 relative"
+              className="text-center space-y-8"
             >
-              <h2 className="text-4xl font-bold">Designing for Impact and Innovation</h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
+              <div className="flex justify-center">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Rocket className="w-6 h-6 text-primary" />
+                </div>
+              </div>
+              <h2 className="text-3xl font-bold">Designing for Impact and Innovation</h2>
+              <p className="text-base text-muted-foreground leading-relaxed max-w-2xl mx-auto">
                 In a rapidly evolving digital landscape, I am dedicated to creating designs that 
                 stand the test of time. My projects leverage the latest tools and trends to push 
                 creative boundaries, delivering designs that are both innovative and impactful. 
                 I am committed to continuous learning and experimenting with new ideas to elevate 
                 every project I undertake.
               </p>
-            </motion.div>
 
-            <motion.div 
-              style={{ y: y2 }}
-              className="absolute -left-20 bottom-0 w-64 h-64 -rotate-6 z-0"
-            >
-              <motion.div
-                whileHover={{ scale: 1.05, rotate: -3 }}
-                transition={{ duration: 0.3 }}
-                className="w-full h-full rounded-lg overflow-hidden shadow-xl"
-              >
-                <img 
-                  src={projectImages[2]} 
-                  alt="Project Preview" 
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-            </motion.div>
-
-            <motion.div 
-              style={{ y: y1 }}
-              className="absolute -right-20 top-0 w-72 h-72 rotate-6 z-0"
-            >
-              <motion.div
-                whileHover={{ scale: 1.05, rotate: 3 }}
-                transition={{ duration: 0.3 }}
-                className="w-full h-full rounded-lg overflow-hidden shadow-xl"
-              >
-                <img 
-                  src={projectImages[3]} 
-                  alt="Project Preview" 
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
+              <div className="mt-12">
+                <Carousel
+                  opts={{
+                    align: "start",
+                    loop: true,
+                  }}
+                  className="w-full max-w-4xl mx-auto"
+                >
+                  <CarouselContent>
+                    {projectImages.slice(2, 4).map((image, index) => (
+                      <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/2">
+                        <motion.div
+                          whileHover={{ scale: 1.05 }}
+                          transition={{ duration: 0.3 }}
+                          className="relative aspect-video rounded-lg overflow-hidden shadow-lg"
+                        >
+                          <img 
+                            src={image} 
+                            alt={`Project ${index + 3}`}
+                            className="w-full h-full object-cover"
+                          />
+                        </motion.div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious />
+                  <CarouselNext />
+                </Carousel>
+              </div>
             </motion.div>
           </div>
+
+          {/* CTA Section */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center space-y-8 max-w-xl mx-auto"
+          >
+            <h2 className="text-3xl font-bold">Ready to Explore My Journey?</h2>
+            <p className="text-base text-muted-foreground">
+              Discover how I approach design challenges and create impactful solutions.
+            </p>
+            <div className="relative inline-block">
+              <motion.div
+                animate={{
+                  scale: [1, 1.1, 1],
+                  opacity: [0.5, 0.8, 0.5],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute inset-0 bg-primary rounded-full blur-xl"
+              />
+              <Link to="/path">
+                <Button size="lg" className="relative">
+                  View My Path
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </div>
     </Layout>
