@@ -128,12 +128,12 @@ export default function Path() {
 
   const generatePath = () => {
     const width = 300;
-    const height = 40;
-    const frequency = 2;
+    const amplitude = 20;
     const points = [];
     
     for (let x = 0; x <= width; x++) {
-      const y = height * Math.sin((x / width) * Math.PI * frequency) + 50;
+      const progress = x / width;
+      const y = amplitude * Math.sin(progress * Math.PI * 2) + 50;
       points.push(`${x},${y}`);
     }
     
