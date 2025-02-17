@@ -40,27 +40,27 @@ export default function Path() {
   const timelineNodes: TimelineNode[] = [
     {
       id: 1,
-      title: "???",
-      content: "Coming soon",
+      title: "Professional Journey",
+      content: "A decade of innovation and leadership in tech",
       x: 15,
       y: 30,
-      sectionId: "education"
+      sectionId: "professional"
     },
     {
       id: 2,
-      title: "???",
-      content: "Coming soon",
+      title: "Academic Foundation",
+      content: "Where curiosity meets technology",
       x: 50,
       y: 70,
-      sectionId: "volunteering"
+      sectionId: "education"
     },
     {
       id: 3,
-      title: "???",
-      content: "Coming soon",
+      title: "Community Impact",
+      content: "Giving back through meaningful contributions",
       x: 85,
       y: 30,
-      sectionId: "professional"
+      sectionId: "volunteering"
     },
   ];
 
@@ -254,9 +254,32 @@ export default function Path() {
                     onClick={() => scrollToSection(node.sectionId)}
                     whileHover={{ scale: 1.1 }}
                   >
-                    <div className="w-6 h-6 rounded-full bg-primary/20 border-2 border-primary cursor-pointer relative z-10 flex items-center justify-center">
-                      <div className="w-2 h-2 rounded-full bg-primary" />
-                    </div>
+                    <motion.div 
+                      className="w-6 h-6 rounded-full bg-primary/20 border-2 border-primary cursor-pointer relative z-10 flex items-center justify-center"
+                      animate={{
+                        scale: [1, 1.2, 1],
+                        borderWidth: ["2px", "1px", "2px"]
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    >
+                      <motion.div 
+                        className="w-2 h-2 rounded-full bg-primary"
+                        animate={{
+                          scale: [1, 1.5, 1],
+                          opacity: [1, 0.7, 1]
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: 0.2
+                        }}
+                      />
+                    </motion.div>
 
                     {hoveredNode === node.id && (
                       <motion.div
@@ -270,8 +293,26 @@ export default function Path() {
                             : 'bg-white/80 backdrop-blur-md'
                         )}
                       >
-                        <h3 className="font-semibold text-lg mb-2">{node.title}</h3>
+                        <motion.h3 
+                          className="font-semibold text-lg mb-2"
+                          animate={{ color: ["hsl(var(--primary))", "hsl(var(--secondary))", "hsl(var(--primary))"] }}
+                          transition={{ duration: 3, repeat: Infinity }}
+                        >
+                          {node.title}
+                        </motion.h3>
                         <p className="text-sm text-muted-foreground">{node.content}</p>
+                        <motion.div
+                          className="absolute -z-10 inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg"
+                          animate={{
+                            opacity: [0.5, 0.8, 0.5],
+                            scale: [1, 1.02, 1],
+                          }}
+                          transition={{
+                            duration: 4,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }}
+                        />
                       </motion.div>
                     )}
                   </motion.div>
@@ -281,44 +322,6 @@ export default function Path() {
           </div>
 
           <div className="mt-32 space-y-24">
-            <section id="education" className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold mb-6">Education</h2>
-              <div className={cn(
-                "p-6 rounded-lg",
-                theme === 'dark' 
-                  ? 'bg-[#2A2D3A] border border-[#3A3F4B]' 
-                  : 'bg-white/80 backdrop-blur-md'
-              )}>
-                <div className="flex justify-between items-start mb-4">
-                  <div>
-                    <h3 className="text-xl font-semibold">Computer Science</h3>
-                    <p className="text-muted-foreground">University of Technology</p>
-                  </div>
-                  <span className="text-sm text-muted-foreground">2016 - 2020</span>
-                </div>
-                <p className="text-muted-foreground">Specialized in AI and Machine Learning</p>
-              </div>
-            </section>
-
-            <section id="volunteering" className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold mb-6">Volunteering</h2>
-              <div className={cn(
-                "p-6 rounded-lg",
-                theme === 'dark' 
-                  ? 'bg-[#2A2D3A] border border-[#3A3F4B]' 
-                  : 'bg-white/80 backdrop-blur-md'
-              )}>
-                <div className="flex justify-between items-start mb-4">
-                  <div>
-                    <h3 className="text-xl font-semibold">Open Source Contributor</h3>
-                    <p className="text-muted-foreground">Various Projects</p>
-                  </div>
-                  <span className="text-sm text-muted-foreground">2019 - Present</span>
-                </div>
-                <p className="text-muted-foreground">Contributing to various open-source projects and mentoring new developers</p>
-              </div>
-            </section>
-
             <section id="professional" className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold mb-6">Professional Experience</h2>
               <div className="space-y-6">
@@ -412,6 +415,90 @@ export default function Path() {
                     </div>
                   </Collapsible>
                 ))}
+              </div>
+            </section>
+
+            <section id="education" className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold mb-6">Education</h2>
+              <div className={cn(
+                "p-6 rounded-lg",
+                theme === 'dark' 
+                  ? 'bg-[#2A2D3A] border border-[#3A3F4B]' 
+                  : 'bg-white/80 backdrop-blur-md'
+              )}>
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 className="text-xl font-semibold">Computer Science</h3>
+                    <p className="text-muted-foreground">University of Technology</p>
+                  </div>
+                  <span className="text-sm text-muted-foreground">2016 - 2020</span>
+                </div>
+                <p className="text-muted-foreground">Specialized in AI and Machine Learning</p>
+                <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className={cn(
+                    "p-4 rounded-md",
+                    theme === 'dark' ? 'bg-[#1A1F2C]' : 'bg-white/50'
+                  )}>
+                    <div className="font-semibold text-lg">3.9</div>
+                    <div className="text-sm text-muted-foreground">GPA</div>
+                  </div>
+                  <div className={cn(
+                    "p-4 rounded-md",
+                    theme === 'dark' ? 'bg-[#1A1F2C]' : 'bg-white/50'
+                  )}>
+                    <div className="font-semibold text-lg">15+</div>
+                    <div className="text-sm text-muted-foreground">Research Projects</div>
+                  </div>
+                  <div className={cn(
+                    "p-4 rounded-md",
+                    theme === 'dark' ? 'bg-[#1A1F2C]' : 'bg-white/50'
+                  )}>
+                    <div className="font-semibold text-lg">3</div>
+                    <div className="text-sm text-muted-foreground">Published Papers</div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section id="volunteering" className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold mb-6">Volunteering</h2>
+              <div className={cn(
+                "p-6 rounded-lg",
+                theme === 'dark' 
+                  ? 'bg-[#2A2D3A] border border-[#3A3F4B]' 
+                  : 'bg-white/80 backdrop-blur-md'
+              )}>
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 className="text-xl font-semibold">Open Source Contributor</h3>
+                    <p className="text-muted-foreground">Various Projects</p>
+                  </div>
+                  <span className="text-sm text-muted-foreground">2019 - Present</span>
+                </div>
+                <p className="text-muted-foreground mb-6">Contributing to various open-source projects and mentoring new developers</p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className={cn(
+                    "p-4 rounded-md",
+                    theme === 'dark' ? 'bg-[#1A1F2C]' : 'bg-white/50'
+                  )}>
+                    <div className="font-semibold text-lg">50+</div>
+                    <div className="text-sm text-muted-foreground">Projects Contributed</div>
+                  </div>
+                  <div className={cn(
+                    "p-4 rounded-md",
+                    theme === 'dark' ? 'bg-[#1A1F2C]' : 'bg-white/50'
+                  )}>
+                    <div className="font-semibold text-lg">100+</div>
+                    <div className="text-sm text-muted-foreground">Pull Requests</div>
+                  </div>
+                  <div className={cn(
+                    "p-4 rounded-md",
+                    theme === 'dark' ? 'bg-[#1A1F2C]' : 'bg-white/50'
+                  )}>
+                    <div className="font-semibold text-lg">25+</div>
+                    <div className="text-sm text-muted-foreground">Mentees Guided</div>
+                  </div>
+                </div>
               </div>
             </section>
           </div>
