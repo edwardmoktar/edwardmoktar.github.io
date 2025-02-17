@@ -58,18 +58,9 @@ export default function Navbar() {
               className="hover-lift"
             >
               {isDark ? (
-                <svg viewBox="0 0 100 100" className="h-6 w-6">
-                  <circle cx="50" cy="50" r="50" fill="#1A1F35"/>
-                  <path d="M50 0a50 50 0 0 1 0 100 50 50 0 0 1 0-100zm0 5a45 45 0 0 0 0 90 45 45 0 0 0 0-90z"/>
-                  <path d="M25 15c10 5 30 25 25 35s-25 30-35 25c15 15 45 15 60 0s15-45 0-60c-5 10-25 30-35 25s-20-15-15-25z" fill="#D4D0C7"/>
-                  <circle cx="75" cy="20" r="8" fill="#D4D0C7"/>
-                </svg>
+                <img src="/dark-mode.png" alt="Dark mode" className="h-8 w-8" />
               ) : (
-                <svg viewBox="0 0 100 100" className="h-6 w-6">
-                  <circle cx="50" cy="50" r="50" fill="#E6D5B8"/>
-                  <path d="M20 30c15 0 40 20 35 35S25 95 10 85c20 15 50 10 65-10s10-50-10-65c0 15-20 40-35 35S15 30 20 30z" fill="#8B4513"/>
-                  <path d="M70 20c10 5 20 25 15 35s-25 20-35 15c15 10 40 5 50-15s5-40-15-50c0 10-15 25-25 20s-15-10-10-20z" fill="#CD853F"/>
-                </svg>
+                <img src="/light-mode.png" alt="Light mode" className="h-8 w-8" />
               )}
             </Button>
           </div>
@@ -90,18 +81,9 @@ export default function Navbar() {
               onClick={toggleDarkMode}
             >
               {isDark ? (
-                <svg viewBox="0 0 100 100" className="h-6 w-6">
-                  <circle cx="50" cy="50" r="50" fill="#1A1F35"/>
-                  <path d="M50 0a50 50 0 0 1 0 100 50 50 0 0 1 0-100zm0 5a45 45 0 0 0 0 90 45 45 0 0 0 0-90z"/>
-                  <path d="M25 15c10 5 30 25 25 35s-25 30-35 25c15 15 45 15 60 0s15-45 0-60c-5 10-25 30-35 25s-20-15-15-25z" fill="#D4D0C7"/>
-                  <circle cx="75" cy="20" r="8" fill="#D4D0C7"/>
-                </svg>
+                <img src="/dark-mode.png" alt="Dark mode" className="h-8 w-8" />
               ) : (
-                <svg viewBox="0 0 100 100" className="h-6 w-6">
-                  <circle cx="50" cy="50" r="50" fill="#E6D5B8"/>
-                  <path d="M20 30c15 0 40 20 35 35S25 95 10 85c20 15 50 10 65-10s10-50-10-65c0 15-20 40-35 35S15 30 20 30z" fill="#8B4513"/>
-                  <path d="M70 20c10 5 20 25 15 35s-25 20-35 15c15 10 40 5 50-15s5-40-15-50c0 10-15 25-25 20s-15-10-10-20z" fill="#CD853F"/>
-                </svg>
+                <img src="/light-mode.png" alt="Light mode" className="h-8 w-8" />
               )}
             </Button>
           </div>
