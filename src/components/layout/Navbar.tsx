@@ -1,7 +1,6 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, MoonStar, Sun, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 
@@ -23,7 +22,7 @@ export default function Navbar() {
     setIsDark(newMode);
     localStorage.setItem('darkMode', String(newMode));
     document.documentElement.classList.toggle('dark');
-    
+
     toast({
       title: `Switched to ${newMode ? 'dark' : 'light'} mode`,
       duration: 1500,
@@ -31,6 +30,7 @@ export default function Navbar() {
   };
 
   const navLinks = [
+    { path: '/', label: 'Home' },
     { path: '/path', label: 'Path' },
     { path: '/projects', label: 'Projects' },
     { path: '/skills', label: 'Skills' },
@@ -57,7 +57,29 @@ export default function Navbar() {
               onClick={toggleDarkMode}
               className="hover-lift"
             >
-              {isDark ? <Sun className="h-5 w-5" /> : <MoonStar className="h-5 w-5" />}
+              {isDark ? (
+                <svg viewBox="0 0 100 100" className="h-6 w-6 text-yellow-500">
+                  <circle cx="50" cy="50" r="40" fill="currentColor"/>
+                  <path
+                    d="M30 60 Q50 40 70 60 Q60 70 50 65 Q40 70 30 60"
+                    fill="currentColor"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    className="text-orange-600"
+                  />
+                </svg>
+              ) : (
+                <svg viewBox="0 0 100 100" className="h-6 w-6 text-purple-500">
+                  <circle cx="50" cy="50" r="40" fill="currentColor"/>
+                  <path
+                    d="M30 60 Q50 40 70 60 Q60 70 50 65 Q40 70 30 60"
+                    fill="currentColor"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    className="text-purple-800"
+                  />
+                </svg>
+              )}
             </Button>
           </div>
 
@@ -76,7 +98,29 @@ export default function Navbar() {
               size="icon"
               onClick={toggleDarkMode}
             >
-              {isDark ? <Sun className="h-5 w-5" /> : <MoonStar className="h-5 w-5" />}
+              {isDark ? (
+                <svg viewBox="0 0 100 100" className="h-6 w-6 text-yellow-500">
+                  <circle cx="50" cy="50" r="40" fill="currentColor"/>
+                  <path
+                    d="M30 60 Q50 40 70 60 Q60 70 50 65 Q40 70 30 60"
+                    fill="currentColor"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    className="text-orange-600"
+                  />
+                </svg>
+              ) : (
+                <svg viewBox="0 0 100 100" className="h-6 w-6 text-purple-500">
+                  <circle cx="50" cy="50" r="40" fill="currentColor"/>
+                  <path
+                    d="M30 60 Q50 40 70 60 Q60 70 50 65 Q40 70 30 60"
+                    fill="currentColor"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    className="text-purple-800"
+                  />
+                </svg>
+              )}
             </Button>
           </div>
         </div>
