@@ -60,12 +60,7 @@ export default function Navbar() {
               <div className={`transform transition-transform duration-300 ${isDark ? 'scale-100' : 'scale-0'} absolute`}>
                 <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
                   <path
-                    d="M12 3a6 6 0 0 0-6 6c0 3.314 2.686 6 6 6s6-2.686 6-6a6 6 0 0 0-6-6m0-2a8 8 0 1 1 0 16 8 8 0 0 1 0-16z"
-                    fill="currentColor"
-                    className="transform origin-center transition-all duration-500"
-                  />
-                  <path
-                    d="M12 5a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"
+                    d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"
                     fill="currentColor"
                     className="transform origin-center transition-all duration-500"
                   />
@@ -73,18 +68,13 @@ export default function Navbar() {
               </div>
               <div className={`transform transition-transform duration-300 ${!isDark ? 'scale-100' : 'scale-0'} ${isDark ? 'opacity-0' : 'opacity-100'}`}>
                 <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"
-                    fill="currentColor"
-                    className="transform origin-center transition-all duration-500"
-                  />
+                  <circle cx="12" cy="12" r="4" fill="currentColor" />
                   <path
                     d="M12 2v2m0 16v2M4 12H2m20 0h-2m-2.828-7.172l-1.414 1.414M6.242 17.758l-1.414 1.414m0-12.344l1.414 1.414m11.102 9.516l1.414 1.414"
                     stroke="currentColor"
-                    strokeWidth="2"
+                    strokeWidth="1.5"
                     strokeLinecap="round"
+                    strokeDasharray="2 2"
                     className="transform origin-center transition-all duration-500"
                   />
                 </svg>
@@ -110,12 +100,7 @@ export default function Navbar() {
               <div className={`transform transition-transform duration-300 ${isDark ? 'scale-100' : 'scale-0'} absolute`}>
                 <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
                   <path
-                    d="M12 3a6 6 0 0 0-6 6c0 3.314 2.686 6 6 6s6-2.686 6-6a6 6 0 0 0-6-6m0-2a8 8 0 1 1 0 16 8 8 0 0 1 0-16z"
-                    fill="currentColor"
-                    className="transform origin-center transition-all duration-500"
-                  />
-                  <path
-                    d="M12 5a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"
+                    d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"
                     fill="currentColor"
                     className="transform origin-center transition-all duration-500"
                   />
@@ -123,18 +108,13 @@ export default function Navbar() {
               </div>
               <div className={`transform transition-transform duration-300 ${!isDark ? 'scale-100' : 'scale-0'} ${isDark ? 'opacity-0' : 'opacity-100'}`}>
                 <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"
-                    fill="currentColor"
-                    className="transform origin-center transition-all duration-500"
-                  />
+                  <circle cx="12" cy="12" r="4" fill="currentColor" />
                   <path
                     d="M12 2v2m0 16v2M4 12H2m20 0h-2m-2.828-7.172l-1.414 1.414M6.242 17.758l-1.414 1.414m0-12.344l1.414 1.414m11.102 9.516l1.414 1.414"
                     stroke="currentColor"
-                    strokeWidth="2"
+                    strokeWidth="1.5"
                     strokeLinecap="round"
+                    strokeDasharray="2 2"
                     className="transform origin-center transition-all duration-500"
                   />
                 </svg>
