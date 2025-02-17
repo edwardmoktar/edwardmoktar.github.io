@@ -218,117 +218,23 @@ export default function Path() {
             </p>
           </motion.div>
 
-          <div 
-            ref={containerRef}
-            className="relative mt-24"
-            style={{ width: '100%', height: '300px', overflowX: 'auto' }}
-          >
-            <div
-              ref={pathRef}
-              className="relative h-full"
-              style={{ width: '300%' }}
-            >
-              <svg
-                className="absolute inset-0 h-full w-full"
-                style={{ width: '300%' }}
-                preserveAspectRatio="none"
+          <div className="flex gap-4 justify-center mt-12 mb-24 flex-wrap">
+            {timelineNodes.map((node) => (
+              <button
+                key={node.id}
+                onClick={() => scrollToSection(node.sectionId)}
+                className={cn(
+                  "px-6 py-3 rounded-lg transition-all",
+                  theme === 'dark' 
+                    ? 'bg-[#2A2D3A] hover:bg-[#3A3F4B]' 
+                    : 'bg-white/80 hover:bg-white/90',
+                  "flex flex-col items-center gap-2"
+                )}
               >
-                <motion.path
-                  d={generatePath()}
-                  fill="none"
-                  stroke={theme === 'dark' ? "#8E9196" : "hsl(var(--primary))"}
-                  strokeWidth="2"
-                  style={pathAnimation}
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ duration: 2, ease: "easeInOut" }}
-                />
-              </svg>
-
-              {timelineNodes.map((node) => (
-                <motion.div
-                  key={node.id}
-                  className="absolute"
-                  style={{
-                    left: `${node.x}%`,
-                    top: `${node.y}%`,
-                  }}
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.5, delay: node.id * 0.2 }}
-                >
-                  <motion.div
-                    className="relative"
-                    onHoverStart={() => setHoveredNode(node.id)}
-                    onHoverEnd={() => setHoveredNode(null)}
-                    onClick={() => scrollToSection(node.sectionId)}
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    <motion.div 
-                      className="w-6 h-6 rounded-full bg-primary/20 border-2 border-primary cursor-pointer relative z-10 flex items-center justify-center"
-                      animate={{
-                        scale: [1, 1.2, 1],
-                        borderWidth: ["2px", "1px", "2px"]
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
-                    >
-                      <motion.div 
-                        className="w-2 h-2 rounded-full bg-primary"
-                        animate={{
-                          scale: [1, 1.5, 1],
-                          opacity: [1, 0.7, 1]
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                          delay: 0.2
-                        }}
-                      />
-                    </motion.div>
-
-                    {hoveredNode === node.id && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className={cn(
-                          "absolute left-8 top-1/2 -translate-y-1/2 p-4 rounded-lg shadow-lg w-64",
-                          theme === 'dark' 
-                            ? 'bg-[#2A2D3A]/90 backdrop-blur-md border border-[#8E9196]/20' 
-                            : 'bg-white/80 backdrop-blur-md'
-                        )}
-                      >
-                        <motion.h3 
-                          className="font-semibold text-lg mb-2"
-                          animate={{ color: ["hsl(var(--primary))", "hsl(var(--secondary))", "hsl(var(--primary))"] }}
-                          transition={{ duration: 3, repeat: Infinity }}
-                        >
-                          {node.title}
-                        </motion.h3>
-                        <p className="text-sm text-muted-foreground">{node.content}</p>
-                        <motion.div
-                          className="absolute -z-10 inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg"
-                          animate={{
-                            opacity: [0.5, 0.8, 0.5],
-                            scale: [1, 1.02, 1],
-                          }}
-                          transition={{
-                            duration: 4,
-                            repeat: Infinity,
-                            ease: "easeInOut"
-                          }}
-                        />
-                      </motion.div>
-                    )}
-                  </motion.div>
-                </motion.div>
-              ))}
-            </div>
+                <span className="font-semibold">{node.title}</span>
+                <span className="text-sm text-muted-foreground">{node.content}</span>
+              </button>
+            ))}
           </div>
 
           <div className="mt-32 space-y-24">
