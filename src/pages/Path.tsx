@@ -127,7 +127,17 @@ export default function Path() {
   ];
 
   const generatePath = () => {
-    return "M 0,30 Q 25,30 50,70 T 100,30 T 150,70 T 200,30 T 250,70 T 300,30";
+    const width = 300;
+    const height = 40;
+    const frequency = 2;
+    const points = [];
+    
+    for (let x = 0; x <= width; x++) {
+      const y = height * Math.sin((x / width) * Math.PI * frequency) + 50;
+      points.push(`${x},${y}`);
+    }
+    
+    return `M 0,50 ${points.map((point, i) => `L ${point}`).join(' ')}`;
   };
 
   const pathAnimation = {
