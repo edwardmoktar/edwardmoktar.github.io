@@ -387,7 +387,8 @@ export default function Path() {
                   <span className="text-sm text-muted-foreground">2019 - Present</span>
                 </div>
                 <p className="text-muted-foreground mb-6">Contributing to various open-source projects and mentoring new developers</p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+  <div className="min-w-[250px] h-[120px] flex items-center justify-center">
                   <div className={cn(
                     "p-4 rounded-md",
                     theme === 'dark' ? 'bg-[#1A1F2C]' : 'bg-white/50'
