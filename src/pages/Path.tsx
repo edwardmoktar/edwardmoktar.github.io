@@ -221,8 +221,8 @@ export default function Path() {
                 className={cn(
                   "px-6 py-3 rounded-lg transition-all w-full h-full min-h-[120px]",
                   theme === 'dark' 
-                    ? 'bg-[#2A2D3A] hover:bg-[#3A3F4B]' 
-                    : 'bg-white/80 hover:bg-white/90',
+                    ? 'bg-[#2A2D3A] hover:bg-[#3A3F4B] text-[#001F3F]' 
+                    : 'bg-[#E6D5C9] hover:bg-[#DBC7BA]',
                   "flex flex-col items-center justify-center gap-2"
                 )}
               >
@@ -242,8 +242,8 @@ export default function Path() {
                       className={cn(
                         "p-6 rounded-lg",
                         theme === 'dark' 
-                          ? 'bg-[#2A2D3A] border border-[#3A3F4B]' 
-                          : 'bg-white/80 backdrop-blur-md'
+                          ? 'bg-[#2A2D3A] border border-[#3A3F4B] text-[#001F3F]' 
+                          : 'bg-[#E6D5C9] backdrop-blur-md'
                       )}
                     >
                       <div className="flex justify-between items-start mb-4">
