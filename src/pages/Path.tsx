@@ -12,6 +12,7 @@ interface TimelineNode {
   content: string;
   x: number;
   y: number;
+  sectionId: string;
 }
 
 export default function Path() {
@@ -28,21 +29,24 @@ export default function Path() {
       title: "???",
       content: "Coming soon",
       x: 15,
-      y: 30
+      y: 30,
+      sectionId: "education"
     },
     {
       id: 2,
       title: "???",
       content: "Coming soon",
       x: 50,
-      y: 70
+      y: 70,
+      sectionId: "volunteering"
     },
     {
       id: 3,
       title: "???",
       content: "Coming soon",
       x: 85,
-      y: 30
+      y: 30,
+      sectionId: "professional"
     },
   ];
 
@@ -54,6 +58,13 @@ export default function Path() {
   const pathAnimation = {
     strokeDasharray: 1000,
     strokeDashoffset: useTransform(scrollYProgress, [0, 0.5], [1000, 0])
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   useEffect(() => {
@@ -85,7 +96,7 @@ export default function Path() {
             className={cn(
               "absolute w-64 h-64 rounded-full blur-3xl",
               theme === 'dark' 
-                ? 'bg-[#F97316] opacity-20' 
+                ? 'bg-white opacity-20' 
                 : 'bg-[#F97316] opacity-30'
             )}
             style={{
@@ -142,7 +153,7 @@ export default function Path() {
                 <motion.path
                   d={generatePath()}
                   fill="none"
-                  stroke={theme === 'dark' ? "#F97316" : "hsl(var(--primary))"}
+                  stroke={theme === 'dark' ? "#8E9196" : "hsl(var(--primary))"}
                   strokeWidth="2"
                   style={pathAnimation}
                   initial={{ pathLength: 0 }}
@@ -167,6 +178,7 @@ export default function Path() {
                     className="relative"
                     onHoverStart={() => setHoveredNode(node.id)}
                     onHoverEnd={() => setHoveredNode(null)}
+                    onClick={() => scrollToSection(node.sectionId)}
                     whileHover={{ scale: 1.1 }}
                   >
                     <div className="w-6 h-6 rounded-full bg-primary/20 border-2 border-primary cursor-pointer relative z-10 flex items-center justify-center">
@@ -181,7 +193,7 @@ export default function Path() {
                         className={cn(
                           "absolute left-8 top-1/2 -translate-y-1/2 p-4 rounded-lg shadow-lg w-64",
                           theme === 'dark' 
-                            ? 'bg-[#2A2D3A]/90 backdrop-blur-md border border-[#F97316]/20' 
+                            ? 'bg-[#2A2D3A]/90 backdrop-blur-md border border-[#8E9196]/20' 
                             : 'bg-white/80 backdrop-blur-md'
                         )}
                       >
@@ -193,6 +205,30 @@ export default function Path() {
                 </motion.div>
               ))}
             </div>
+          </div>
+
+          {/* Content Sections */}
+          <div className="mt-32 space-y-24">
+            <section id="education" className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold mb-6">Education</h2>
+              <div className="bg-card p-6 rounded-lg">
+                <p className="text-muted-foreground">Content coming soon...</p>
+              </div>
+            </section>
+
+            <section id="volunteering" className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold mb-6">Volunteering</h2>
+              <div className="bg-card p-6 rounded-lg">
+                <p className="text-muted-foreground">Content coming soon...</p>
+              </div>
+            </section>
+
+            <section id="professional" className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold mb-6">Professional Experience</h2>
+              <div className="bg-card p-6 rounded-lg">
+                <p className="text-muted-foreground">Content coming soon...</p>
+              </div>
+            </section>
           </div>
         </div>
       </div>
