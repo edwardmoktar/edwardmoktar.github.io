@@ -164,6 +164,24 @@ html {
 }
 
 .animate-float {
+
+.theme-icon {
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-icon:hover {
+  transform: rotate(12deg);
+}
+
+@keyframes rays {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
   animation: float 6s ease-in-out infinite;
 }
 
