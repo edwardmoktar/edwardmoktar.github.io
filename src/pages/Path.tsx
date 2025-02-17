@@ -213,17 +213,17 @@ export default function Path() {
             </p>
           </motion.div>
 
-          <div className="flex gap-4 justify-center mt-12 mb-24 flex-wrap">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto mt-12 mb-24">
             {timelineNodes.map((node) => (
               <button
                 key={node.id}
                 onClick={() => scrollToSection(node.sectionId)}
                 className={cn(
-                  "px-6 py-3 rounded-lg transition-all",
+                  "px-6 py-3 rounded-lg transition-all w-full h-full min-h-[120px]",
                   theme === 'dark' 
                     ? 'bg-[#2A2D3A] hover:bg-[#3A3F4B]' 
                     : 'bg-white/80 hover:bg-white/90',
-                  "flex flex-col items-center gap-2"
+                  "flex flex-col items-center justify-center gap-2"
                 )}
               >
                 <span className="font-semibold">{node.title}</span>
