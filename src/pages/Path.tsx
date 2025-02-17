@@ -172,7 +172,7 @@ export default function Path() {
       <div className={cn(
         "min-h-screen transition-all duration-1000",
         theme === 'dark' 
-          ? 'bg-gradient-to-b from-[#1A1F2C] to-[#221F26]' 
+          ? 'bg-gradient-to-b from-[#1A1F2C] via-[#1E2334] to-[#221F26]' 
           : 'bg-gradient-to-b from-[#FEF7CD] to-[#FEC6A1]'
       )}>
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
