@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react';
 import Layout from '@/components/layout/Layout';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
@@ -13,6 +12,17 @@ interface TimelineNode {
   x: number;
   y: number;
   sectionId: string;
+}
+
+interface Experience {
+  title: string;
+  company: string;
+  period: string;
+  description: string;
+  metrics: {
+    value: string;
+    label: string;
+  }[];
 }
 
 export default function Path() {
@@ -50,8 +60,62 @@ export default function Path() {
     },
   ];
 
+  const experiences: Experience[] = [
+    {
+      title: "Senior Product Operations",
+      company: "Web3 Gaming Studio",
+      period: "2022 - Present",
+      description: "Leading product operations and automation initiatives for Web3 gaming platforms",
+      metrics: [
+        {
+          value: "960+ hours",
+          label: "Monthly workflow automation"
+        },
+        {
+          value: "80,000+",
+          label: "Active community members"
+        },
+        {
+          value: "$1.7+",
+          label: "NFT Assets Managed"
+        }
+      ]
+    },
+    {
+      title: "Project Manager",
+      company: "Tech Consultancy",
+      period: "2020 - 2022",
+      description: "Developed and implemented AI-powered solutions for enterprise clients",
+      metrics: [
+        {
+          value: "500+",
+          label: "Process automations deployed"
+        },
+        {
+          value: "25+",
+          label: "Enterprise clients served"
+        }
+      ]
+    },
+    {
+      title: "Digital Marketing Associate",
+      company: "Marketing Agency",
+      period: "2018 - 2020",
+      description: "Led data-driven marketing campaigns and automation initiatives",
+      metrics: [
+        {
+          value: "300%",
+          label: "Increase in campaign ROI"
+        },
+        {
+          value: "1M+",
+          label: "Audience reach"
+        }
+      ]
+    }
+  ];
+
   const generatePath = () => {
-    // Create a smoother, more gradual curve that extends beyond the viewport
     return "M 0,30 C 50,30 50,70 100,70 S 150,30 200,30";
   };
 
@@ -91,7 +155,6 @@ export default function Path() {
           : 'bg-gradient-to-b from-[#FEF7CD] to-[#FEC6A1]'
       )}>
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Celestial Body */}
           <motion.div
             className={cn(
               "absolute w-64 h-64 rounded-full blur-3xl",
@@ -114,7 +177,6 @@ export default function Path() {
             }}
           />
           
-          {/* Stars in dark mode */}
           {theme === 'dark' && (
             <div className="absolute inset-0">
               <div className="stars opacity-40" />
@@ -143,7 +205,7 @@ export default function Path() {
             <div
               ref={pathRef}
               className="relative h-full"
-              style={{ width: '200%' }} // Extended width for scrolling
+              style={{ width: '200%' }}
             >
               <svg
                 className="absolute inset-0 h-full"
@@ -207,26 +269,84 @@ export default function Path() {
             </div>
           </div>
 
-          {/* Content Sections */}
           <div className="mt-32 space-y-24">
             <section id="education" className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold mb-6">Education</h2>
-              <div className="bg-card p-6 rounded-lg">
-                <p className="text-muted-foreground">Content coming soon...</p>
+              <div className={cn(
+                "p-6 rounded-lg",
+                theme === 'dark' 
+                  ? 'bg-[#2A2D3A] border border-[#3A3F4B]' 
+                  : 'bg-white/80 backdrop-blur-md'
+              )}>
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 className="text-xl font-semibold">Computer Science</h3>
+                    <p className="text-muted-foreground">University of Technology</p>
+                  </div>
+                  <span className="text-sm text-muted-foreground">2016 - 2020</span>
+                </div>
+                <p className="text-muted-foreground">Specialized in AI and Machine Learning</p>
               </div>
             </section>
 
             <section id="volunteering" className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold mb-6">Volunteering</h2>
-              <div className="bg-card p-6 rounded-lg">
-                <p className="text-muted-foreground">Content coming soon...</p>
+              <div className={cn(
+                "p-6 rounded-lg",
+                theme === 'dark' 
+                  ? 'bg-[#2A2D3A] border border-[#3A3F4B]' 
+                  : 'bg-white/80 backdrop-blur-md'
+              )}>
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 className="text-xl font-semibold">Open Source Contributor</h3>
+                    <p className="text-muted-foreground">Various Projects</p>
+                  </div>
+                  <span className="text-sm text-muted-foreground">2019 - Present</span>
+                </div>
+                <p className="text-muted-foreground">Contributing to various open-source projects and mentoring new developers</p>
               </div>
             </section>
 
             <section id="professional" className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold mb-6">Professional Experience</h2>
-              <div className="bg-card p-6 rounded-lg">
-                <p className="text-muted-foreground">Content coming soon...</p>
+              <div className="space-y-6">
+                {experiences.map((exp, index) => (
+                  <div
+                    key={index}
+                    className={cn(
+                      "p-6 rounded-lg",
+                      theme === 'dark' 
+                        ? 'bg-[#2A2D3A] border border-[#3A3F4B]' 
+                        : 'bg-white/80 backdrop-blur-md'
+                    )}
+                  >
+                    <div className="flex justify-between items-start mb-4">
+                      <div>
+                        <h3 className="text-xl font-semibold">{exp.title}</h3>
+                        <p className="text-muted-foreground">{exp.company}</p>
+                      </div>
+                      <span className="text-sm text-muted-foreground">{exp.period}</span>
+                    </div>
+                    <p className="text-muted-foreground mb-6">{exp.description}</p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      {exp.metrics.map((metric, idx) => (
+                        <div
+                          key={idx}
+                          className={cn(
+                            "p-4 rounded-md",
+                            theme === 'dark'
+                              ? 'bg-[#1A1F2C]'
+                              : 'bg-white/50'
+                          )}
+                        >
+                          <div className="font-semibold text-lg">{metric.value}</div>
+                          <div className="text-sm text-muted-foreground">{metric.label}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
               </div>
             </section>
           </div>
