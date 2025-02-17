@@ -6,48 +6,48 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 20 10% 5%;
-    --card: 0 0% 98%;
-    --card-foreground: 20 10% 5%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 20 10% 5%;
-    --primary: 24 40% 60%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 60 10% 96%;
-    --secondary-foreground: 24 10% 10%;
-    --muted: 60 10% 96%;
-    --muted-foreground: 25 5% 45%;
-    --accent: 24 40% 60%;
-    --accent-foreground: 24 10% 10%;
+    --background: 39 38% 93%;
+    --foreground: 32 40% 25%;
+    --card: 35 35% 98%;
+    --card-foreground: 32 40% 25%;
+    --popover: 35 35% 98%;
+    --popover-foreground: 32 40% 25%;
+    --primary: 27 96% 61%;
+    --primary-foreground: 35 40% 98%;
+    --secondary: 45 30% 96%;
+    --secondary-foreground: 32 40% 25%;
+    --muted: 45 30% 96%;
+    --muted-foreground: 32 30% 40%;
+    --accent: 27 96% 61%;
+    --accent-foreground: 32 40% 25%;
     --destructive: 0 85% 60%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 20 5% 90%;
-    --input: 20 5% 90%;
-    --ring: 24 40% 60%;
+    --destructive-foreground: 35 40% 98%;
+    --border: 32 30% 85%;
+    --input: 32 30% 85%;
+    --ring: 27 96% 61%;
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 222 47% 11%;
-    --foreground: 0 0% 98%;
-    --card: 222 47% 15%;
-    --card-foreground: 0 0% 98%;
-    --popover: 222 47% 11%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 24 90% 50%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 222 47% 15%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 222 47% 15%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 24 90% 50%;
-    --accent-foreground: 0 0% 98%;
+    --background: 230 40% 8%;
+    --foreground: 35 40% 90%;
+    --card: 230 40% 12%;
+    --card-foreground: 35 40% 90%;
+    --popover: 230 40% 8%;
+    --popover-foreground: 35 40% 90%;
+    --primary: 45 100% 60%;
+    --primary-foreground: 230 40% 8%;
+    --secondary: 230 40% 12%;
+    --secondary-foreground: 35 40% 90%;
+    --muted: 230 40% 12%;
+    --muted-foreground: 35 30% 70%;
+    --accent: 45 100% 60%;
+    --accent-foreground: 230 40% 8%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 24 90% 50%;
+    --destructive-foreground: 35 40% 90%;
+    --border: 230 40% 20%;
+    --input: 230 40% 20%;
+    --ring: 45 100% 60%;
   }
 }
 
@@ -57,9 +57,23 @@
 
 body {
   @apply bg-background text-foreground font-inter antialiased;
+}
+
+body:not(.dark) {
   background-image: 
+    radial-gradient(circle at 70% 20%, rgba(255, 166, 0, 0.15) 0%, transparent 50%),
     linear-gradient(135deg, rgba(254, 198, 161, 0.1) 0%, rgba(254, 247, 205, 0.1) 100%),
     repeating-linear-gradient(45deg, rgba(254, 198, 161, 0.05) 0px, rgba(254, 198, 161, 0.05) 1px, transparent 1px, transparent 10px);
+}
+
+body.dark {
+  background-image: 
+    radial-gradient(1px 1px at 50% 50%, rgba(255, 255, 255, 0.15) 0%, transparent 0),
+    radial-gradient(2px 2px at 30% 30%, rgba(255, 255, 255, 0.2) 0%, transparent 0),
+    radial-gradient(2px 2px at 70% 70%, rgba(255, 255, 255, 0.2) 0%, transparent 0),
+    radial-gradient(circle at 30% 20%, rgba(255, 217, 0, 0.1) 0%, transparent 50%);
+  background-size: 50px 50px, 100px 100px, 150px 150px, 100% 100%;
+  animation: twinkle 4s ease-in-out infinite;
 }
 
 .glass {
