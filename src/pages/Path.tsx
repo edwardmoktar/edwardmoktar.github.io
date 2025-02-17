@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Layout from '@/components/layout/Layout';
+import Layout from '@/components/layout/Layout';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Sun, Moon, Sparkles, Book, Heart, Briefcase, ChevronDown } from 'lucide-react';
 import { useTheme } from 'next-themes';
