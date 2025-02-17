@@ -59,14 +59,14 @@ body {
   @apply bg-background text-foreground font-inter antialiased;
 }
 
-body:not(.dark) {
+:root:not(.dark) body {
   background-image: 
     radial-gradient(circle at 70% 20%, rgba(255, 166, 0, 0.15) 0%, transparent 50%),
     linear-gradient(135deg, rgba(254, 198, 161, 0.1) 0%, rgba(254, 247, 205, 0.1) 100%),
     repeating-linear-gradient(45deg, rgba(254, 198, 161, 0.05) 0px, rgba(254, 198, 161, 0.05) 1px, transparent 1px, transparent 10px);
 }
 
-body.dark {
+:root.dark body {
   background-image: 
     radial-gradient(1px 1px at 50% 50%, rgba(255, 255, 255, 0.15) 0%, transparent 0),
     radial-gradient(2px 2px at 30% 30%, rgba(255, 255, 255, 0.2) 0%, transparent 0),
@@ -74,6 +74,7 @@ body.dark {
     radial-gradient(circle at 30% 20%, rgba(255, 217, 0, 0.1) 0%, transparent 50%);
   background-size: 50px 50px, 100px 100px, 150px 150px, 100% 100%;
   animation: twinkle 4s ease-in-out infinite;
+  background-color: hsl(var(--background));
 }
 
 .glass {
