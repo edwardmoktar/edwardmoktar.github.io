@@ -169,7 +169,7 @@ export default function Path() {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-background transition-all duration-1000">
+      <div className="min-h-screen bg-background transition-all duration-1000 path-page">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div
             className={cn(
@@ -219,10 +219,7 @@ export default function Path() {
                 key={node.id}
                 onClick={() => scrollToSection(node.sectionId)}
                 className={cn(
-                  "px-6 py-3 rounded-lg transition-all w-full h-full min-h-[120px]",
-                  theme === 'dark' 
-                    ? 'bg-[#2A2D3A] hover:bg-[#3A3F4B] text-[#001F3F]' 
-                    : 'bg-[#E6D5C9] hover:bg-[#DBC7BA]',
+                  "px-6 py-3 rounded-lg transition-all w-full h-full min-h-[120px] path-card",
                   "flex flex-col items-center justify-center gap-2"
                 )}
               >
@@ -238,12 +235,7 @@ export default function Path() {
               <div className="space-y-6">
                 {experiences.map((exp, index) => (
                   <Collapsible key={index}>
-                    <div className={cn(
-                      "p-6 rounded-lg border transition-all duration-300",
-                      theme === 'dark' 
-                        ? 'bg-[#1A1F2C] border-[#2A2D3A] hover:border-[#3A3F4B]' 
-                        : 'bg-[#F8F9FA] border-gray-200 hover:border-gray-300'
-                    )}>
+                    <div className="path-card p-6 rounded-lg border transition-all duration-300">
                       <div className="flex justify-between items-start mb-4">
                         <div>
                           <h3 className="text-xl font-semibold">{exp.title}</h3>
@@ -330,12 +322,7 @@ export default function Path() {
 
             <section id="education" className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold mb-6">Education</h2>
-              <div className={cn(
-                "p-6 rounded-lg border transition-all duration-300",
-                theme === 'dark' 
-                  ? 'bg-[#1A1F2C] border-[#2A2D3A] hover:border-[#3A3F4B]' 
-                  : 'bg-[#F8F9FA] border-gray-200 hover:border-gray-300'
-              )}>
+              <div className="path-card p-6 rounded-lg border transition-all duration-300">
                 <div className="flex justify-between items-start mb-4">
                   <div>
                     <h3 className="text-xl font-semibold">Computer Science</h3>
@@ -378,12 +365,7 @@ export default function Path() {
 
             <section id="volunteering" className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold mb-6">Volunteering</h2>
-              <div className={cn(
-                "p-6 rounded-lg border transition-all duration-300",
-                theme === 'dark' 
-                  ? 'bg-[#1A1F2C] border-[#2A2D3A] hover:border-[#3A3F4B]' 
-                  : 'bg-[#F8F9FA] border-gray-200 hover:border-gray-300'
-              )}>
+              <div className="path-card p-6 rounded-lg border transition-all duration-300">
                 <div className="flex justify-between items-start mb-4">
                   <div>
                     <h3 className="text-xl font-semibold">Open Source Contributor</h3>

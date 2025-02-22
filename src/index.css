@@ -29,24 +29,24 @@
   }
 
   .dark {
-    --background: 212 30% 11%;
+    --background: 222 24% 15%;
     --foreground: 37 22% 90%;
-    --card: 214 29% 15%;
+    --card: 217 22% 16%;
     --card-foreground: 37 22% 90%;
-    --popover: 212 30% 11%;
+    --popover: 222 24% 15%;
     --popover-foreground: 37 22% 90%;
     --primary: 35 40% 60%;
-    --primary-foreground: 212 30% 11%;
-    --secondary: 213 25% 15%;
+    --primary-foreground: 222 24% 15%;
+    --secondary: 217 19% 27%;
     --secondary-foreground: 37 22% 90%;
-    --muted: 213 25% 15%;
+    --muted: 217 19% 27%;
     --muted-foreground: 37 22% 80%;
     --accent: 35 40% 60%;
-    --accent-foreground: 212 30% 11%;
+    --accent-foreground: 222 24% 15%;
     --destructive: 0 62% 30%;
     --destructive-foreground: 37 22% 90%;
-    --border: 213 25% 20%;
-    --input: 213 25% 20%;
+    --border: 217 19% 27%;
+    --input: 217 19% 27%;
     --ring: 35 40% 60%;
   }
 }
@@ -260,4 +260,13 @@ html {
     radial-gradient(2px 2px at 160px 120px, #ffffff, rgba(0,0,0,0));
   background-size: 200px 200px;
   animation: twinkle 4s ease-in-out infinite;
+}
+
+.dark .path-card {
+  background-color: #232731;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark .path-page {
+  background-color: #1A1F2C;
 }
