@@ -69,7 +69,7 @@ const experiences: Experience[] = [
     ],
     relatedProjects: [
       {
-        name: "Web3 GameFi Ops",
+        name: "Web3 GameFi Operations",
         link: "/projects/gamefi-ops"
       }
     ]
