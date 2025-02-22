@@ -238,14 +238,12 @@ export default function Path() {
               <div className="space-y-6">
                 {experiences.map((exp, index) => (
                   <Collapsible key={index}>
-                    <div
-                      className={cn(
-                        "p-6 rounded-lg",
-                        theme === 'dark' 
-                          ? 'bg-[#2A2D3A] border border-[#3A3F4B] text-[#001F3F]' 
-                          : 'bg-[#E6D5C9] backdrop-blur-md'
-                      )}
-                    >
+                    <div className={cn(
+                      "p-6 rounded-lg border transition-all duration-300",
+                      theme === 'dark' 
+                        ? 'bg-[#1A1F2C] border-[#2A2D3A] hover:border-[#3A3F4B]' 
+                        : 'bg-[#F8F9FA] border-gray-200 hover:border-gray-300'
+                    )}>
                       <div className="flex justify-between items-start mb-4">
                         <div>
                           <h3 className="text-xl font-semibold">{exp.title}</h3>
@@ -261,8 +259,8 @@ export default function Path() {
                             className={cn(
                               "p-4 rounded-md",
                               theme === 'dark'
-                                ? 'bg-[#1A1F2C]'
-                                : 'bg-white/50'
+                                ? 'bg-[#232731] border border-[#2A2D3A]'
+                                : 'bg-white/50 border border-gray-100'
                             )}
                           >
                             <div className="font-semibold text-lg">{metric.value}</div>
@@ -279,7 +277,7 @@ export default function Path() {
                       </CollapsibleTrigger>
 
                       <CollapsibleContent>
-                        <div className="mt-6 space-y-6 pt-4 border-t border-border">
+                        <div className="mt-6 space-y-6 pt-4 border-t border-[#2A2D3A]">
                           {exp.behindTheScenes && (
                             <div>
                               <h4 className="font-semibold text-lg mb-2">Behind the Scenes</h4>
@@ -306,17 +304,18 @@ export default function Path() {
                               <h4 className="font-semibold text-lg mb-2">Related Projects</h4>
                               <div className="flex flex-wrap gap-2">
                                 {exp.relatedProjects.map((project, idx) => (
-                                  <span
+                                  <a
                                     key={idx}
+                                    href={`/projects#${project.toLowerCase().replace(/\s+/g, '-')}`}
                                     className={cn(
-                                      "px-3 py-1 rounded-full text-sm",
+                                      "px-3 py-1 rounded-full text-sm border transition-all duration-300",
                                       theme === 'dark'
-                                        ? 'bg-[#1A1F2C] text-muted-foreground'
-                                        : 'bg-white/50 text-muted-foreground'
+                                        ? 'bg-[#232731] border-[#2A2D3A] hover:border-[#3A3F4B] text-muted-foreground hover:text-foreground'
+                                        : 'bg-white/50 border-gray-200 hover:border-gray-300 text-muted-foreground hover:text-foreground'
                                     )}
                                   >
                                     {project}
-                                  </span>
+                                  </a>
                                 ))}
                               </div>
                             </div>
@@ -332,10 +331,10 @@ export default function Path() {
             <section id="education" className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold mb-6">Education</h2>
               <div className={cn(
-                "p-6 rounded-lg",
+                "p-6 rounded-lg border transition-all duration-300",
                 theme === 'dark' 
-                  ? 'bg-[#2A2D3A] border border-[#3A3F4B]' 
-                  : 'bg-white/80 backdrop-blur-md'
+                  ? 'bg-[#1A1F2C] border-[#2A2D3A] hover:border-[#3A3F4B]' 
+                  : 'bg-[#F8F9FA] border-gray-200 hover:border-gray-300'
               )}>
                 <div className="flex justify-between items-start mb-4">
                   <div>
@@ -347,22 +346,28 @@ export default function Path() {
                 <p className="text-muted-foreground">Specialized in AI and Machine Learning</p>
                 <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className={cn(
-                    "p-4 rounded-md",
-                    theme === 'dark' ? 'bg-[#1A1F2C]' : 'bg-white/50'
+                    "p-4 rounded-md border",
+                    theme === 'dark' 
+                      ? 'bg-[#232731] border-[#2A2D3A]' 
+                      : 'bg-white/50 border-gray-100'
                   )}>
                     <div className="font-semibold text-lg">3.9</div>
                     <div className="text-sm text-muted-foreground">GPA</div>
                   </div>
                   <div className={cn(
-                    "p-4 rounded-md",
-                    theme === 'dark' ? 'bg-[#1A1F2C]' : 'bg-white/50'
+                    "p-4 rounded-md border",
+                    theme === 'dark' 
+                      ? 'bg-[#232731] border-[#2A2D3A]' 
+                      : 'bg-white/50 border-gray-100'
                   )}>
                     <div className="font-semibold text-lg">15+</div>
                     <div className="text-sm text-muted-foreground">Research Projects</div>
                   </div>
                   <div className={cn(
-                    "p-4 rounded-md",
-                    theme === 'dark' ? 'bg-[#1A1F2C]' : 'bg-white/50'
+                    "p-4 rounded-md border",
+                    theme === 'dark' 
+                      ? 'bg-[#232731] border-[#2A2D3A]' 
+                      : 'bg-white/50 border-gray-100'
                   )}>
                     <div className="font-semibold text-lg">3</div>
                     <div className="text-sm text-muted-foreground">Published Papers</div>
@@ -374,10 +379,10 @@ export default function Path() {
             <section id="volunteering" className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold mb-6">Volunteering</h2>
               <div className={cn(
-                "p-6 rounded-lg",
+                "p-6 rounded-lg border transition-all duration-300",
                 theme === 'dark' 
-                  ? 'bg-[#2A2D3A] border border-[#3A3F4B]' 
-                  : 'bg-white/80 backdrop-blur-md'
+                  ? 'bg-[#1A1F2C] border-[#2A2D3A] hover:border-[#3A3F4B]' 
+                  : 'bg-[#F8F9FA] border-gray-200 hover:border-gray-300'
               )}>
                 <div className="flex justify-between items-start mb-4">
                   <div>
@@ -389,22 +394,28 @@ export default function Path() {
                 <p className="text-muted-foreground mb-6">Contributing to various open-source projects and mentoring new developers</p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className={cn(
-                    "p-4 rounded-md",
-                    theme === 'dark' ? 'bg-[#1A1F2C]' : 'bg-white/50'
+                    "p-4 rounded-md border",
+                    theme === 'dark' 
+                      ? 'bg-[#232731] border-[#2A2D3A]' 
+                      : 'bg-white/50 border-gray-100'
                   )}>
                     <div className="font-semibold text-lg">50+</div>
                     <div className="text-sm text-muted-foreground">Projects Contributed</div>
                   </div>
                   <div className={cn(
-                    "p-4 rounded-md",
-                    theme === 'dark' ? 'bg-[#1A1F2C]' : 'bg-white/50'
+                    "p-4 rounded-md border",
+                    theme === 'dark' 
+                      ? 'bg-[#232731] border-[#2A2D3A]' 
+                      : 'bg-white/50 border-gray-100'
                   )}>
                     <div className="font-semibold text-lg">100+</div>
                     <div className="text-sm text-muted-foreground">Pull Requests</div>
                   </div>
                   <div className={cn(
-                    "p-4 rounded-md",
-                    theme === 'dark' ? 'bg-[#1A1F2C]' : 'bg-white/50'
+                    "p-4 rounded-md border",
+                    theme === 'dark' 
+                      ? 'bg-[#232731] border-[#2A2D3A]' 
+                      : 'bg-white/50 border-gray-100'
                   )}>
                     <div className="font-semibold text-lg">25+</div>
                     <div className="text-sm text-muted-foreground">Mentees Guided</div>
