@@ -67,7 +67,7 @@ export default function Path() {
   const experiences: Experience[] = [
     {
       title: "Senior Product Operations",
-      company: "Web3 Gaming Studio",
+      company: "Telos Labs",
       period: "2022 - Present",
       description: "Leading product operations and automation initiatives for Web3 gaming platforms",
       metrics: [
