@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronRight, BarChart2, Rocket, Gamepad2, X } from 'lucide-react';
@@ -161,7 +160,6 @@ const projects: Project[] = [
   }
 ];
 
-// Duplicate projects with new IDs
 const duplicatedProjects = [
   ...projects,
   ...projects.map(project => ({
@@ -191,7 +189,7 @@ export default function Projects() {
                 className="h-full"
               >
                 <Card
-                  className="h-full hover:shadow-lg transition-all cursor-pointer"
+                  className="h-full hover:shadow-lg transition-all cursor-pointer bg-[#232731] border-[#2A2D3A] hover:border-[#3A3F4B]"
                   onClick={() => setSelectedProject(project)}
                 >
                   <div className="relative aspect-video w-full">
@@ -207,16 +205,16 @@ export default function Projects() {
                         <IconComponent className="w-6 h-6 text-primary" />
                       </div>
                       <div className="flex-grow">
-                        <h2 className="text-2xl font-semibold">{project.title}</h2>
+                        <h2 className="text-2xl font-semibold text-foreground">{project.title}</h2>
                         <p className="text-muted-foreground">{project.subtitle}</p>
                       </div>
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <p className="mb-4">{project.description}</p>
+                    <p className="mb-4 text-foreground">{project.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {project.techStack.map((tech, i) => (
-                        <Badge key={i} variant="secondary">
+                        <Badge key={i} variant="secondary" className="bg-[#1A1F2C] text-foreground border-[#2A2D3A]">
                           {tech}
                         </Badge>
                       ))}
@@ -230,7 +228,7 @@ export default function Projects() {
 
         <Dialog open={selectedProject !== null} onOpenChange={() => setSelectedProject(null)}>
           {selectedProject && (
-            <DialogContent className="max-w-4xl w-[90vw] max-h-[90vh] overflow-y-auto">
+            <DialogContent className="max-w-4xl w-[90vw] max-h-[90vh] overflow-y-auto bg-[#232731] border-[#2A2D3A]">
               <DialogHeader>
                 <DialogTitle className="text-2xl font-bold flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
