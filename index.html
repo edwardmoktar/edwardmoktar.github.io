@@ -6,48 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Edward's Portfolio</title>
     <meta name="description" content="Product Designer, UI/UX Designer, and Developer portfolio" />
-    <script>
-      // Use JSDelivr to load the built scripts with correct MIME types
-      const username = 'edwardmoktar';
-      const repo = 'edwardmoktar.github.io';
-      const branch = 'gh-pages';
-      
-      // Load the main app through JSDelivr
-      function loadViaJSDelivr() {
-        // First, fetch the HTML from the gh-pages branch to find script references
-        fetch(`https://cdn.jsdelivr.net/gh/${username}/${repo}@${branch}/index.html`)
-          .then(response => response.text())
-          .then(html => {
-            // Find all script tags
-            const scriptPattern = /<script[^>]*src="([^"]*)"[^>]*>/g;
-            let match;
-            const scripts = [];
-            
-            while ((match = scriptPattern.exec(html)) !== null) {
-              scripts.push(match[1]);
-            }
-            
-            // Load each script via JSDelivr
-            scripts.forEach(src => {
-              if (src.startsWith('./')) {
-                src = src.substring(2);
-              } else if (src.startsWith('/')) {
-                src = src.substring(1);
-              }
-              
-              const script = document.createElement('script');
-              script.type = 'module';
-              script.src = `https://cdn.jsdelivr.net/gh/${username}/${repo}@${branch}/${src}`;
-              document.body.appendChild(script);
-            });
-          });
-      }
-      
-      // Start loading when the page is ready
-      document.addEventListener('DOMContentLoaded', loadViaJSDelivr);
-    </script>
   </head>
   <body>
     <div id="root"></div>
+    <!-- We'll load the script with plain script tag - no type="module" -->
+    <script src="./src/main.tsx" type="text/javascript"></script>
   </body>
 </html>

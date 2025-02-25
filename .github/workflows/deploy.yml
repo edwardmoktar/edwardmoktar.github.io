@@ -23,66 +23,14 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Install gh-pages package
-        run: npm install -g gh-pages
-
       - name: Create .nojekyll file
-        run: touch public/.nojekyll
-
-      - name: Add GitHub Pages MIME type fix
-        run: |
-          mkdir -p dist
-          echo '{ "*.js": { "Content-Type": "application/javascript" }, "*.mjs": { "Content-Type": "application/javascript" } }' > public/_headers
+        run: touch dist/.nojekyll
 
       - name: Build
         run: npm run build
-
-      - name: Prepare build for GitHub Pages
-        run: |
-          # Fix paths in HTML files
-          find dist -type f -name "*.html" -exec sed -i 's|type="module" crossorigin|type="module"|g' {} \;
-          find dist -type f -name "*.html" -exec sed -i 's|/assets/|./assets/|g' {} \;
-          
-          # Create special version of index.html for GitHub Pages
-          cat > dist/index.html << 'EOL'
-          <!DOCTYPE html>
-          <html lang="en">
-            <head>
-              <meta charset="UTF-8" />
-              <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-              <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-              <title>Edward's Portfolio</title>
-              <meta name="description" content="Product Designer, UI/UX Designer, and Developer portfolio" />
-              <script>
-                // Fix for GitHub Pages MIME type issues
-                document.addEventListener('DOMContentLoaded', function() {
-                  // Find all script elements in the built HTML
-                  const mainScript = document.createElement('script');
-                  mainScript.setAttribute('defer', '');
-                  mainScript.setAttribute('src', './assets/index-*.js');
-                  
-                  // Use a simple regex to match the script filename pattern
-                  fetch('./')
-                    .then(response => response.text())
-                    .then(html => {
-                      const matches = html.match(/assets\/index-[a-zA-Z0-9]+\.js/g);
-                      if (matches && matches.length > 0) {
-                        mainScript.setAttribute('src', './' + matches[0]);
-                        document.body.appendChild(mainScript);
-                      }
-                    });
-                });
-              </script>
-            </head>
-            <body>
-              <div id="root"></div>
-            </body>
-          </html>
-          EOL
-          
-      - name: Deploy
+        
+      - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist
           branch: gh-pages
-          clean: true 
+          folder: dist 
