@@ -8,6 +8,8 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -16,9 +18,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+          cache: 'npm'
 
       - name: Install Dependencies
         run: npm install
+
+      - name: Create .nojekyll file
+        run: touch public/.nojekyll
 
       - name: Build
         run: npm run build
@@ -26,5 +32,6 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist  # This is the default Vite output folder
-          branch: gh-pages 
+          folder: dist
+          branch: gh-pages
+          clean: true 
