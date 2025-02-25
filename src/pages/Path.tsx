@@ -176,7 +176,7 @@ export default function Path() {
               "absolute w-64 h-64 rounded-full blur-3xl",
               theme === 'dark' 
                 ? 'bg-white opacity-20' 
-                : 'bg-[#F97316] opacity-30'
+                : 'bg-primary opacity-10'
             )}
             style={{
               top: '10%',
@@ -184,7 +184,7 @@ export default function Path() {
             }}
             animate={{
               scale: [1, 1.2, 1],
-              opacity: theme === 'dark' ? [0.2, 0.3, 0.2] : [0.3, 0.4, 0.3],
+              opacity: theme === 'dark' ? [0.2, 0.3, 0.2] : [0.1, 0.15, 0.1],
             }}
             transition={{
               duration: 8,
@@ -219,8 +219,8 @@ export default function Path() {
                 key={node.id}
                 onClick={() => scrollToSection(node.sectionId)}
                 className={cn(
-                  "px-6 py-3 rounded-lg transition-all w-full h-full min-h-[120px] path-card",
-                  "flex flex-col items-center justify-center gap-2"
+                  "path-navigation-card",
+                  "flex flex-col items-center justify-center gap-2 text-center"
                 )}
               >
                 <span className="font-semibold">{node.title}</span>
