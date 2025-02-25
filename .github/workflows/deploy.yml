@@ -23,11 +23,24 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Install gh-pages package
+        run: npm install -g gh-pages
+
       - name: Create .nojekyll file
         run: touch public/.nojekyll
 
+      - name: Add GitHub Pages MIME type fix
+        run: |
+          mkdir -p dist
+          echo '{ "*.js": { "Content-Type": "application/javascript" }, "*.mjs": { "Content-Type": "application/javascript" } }' > public/_headers
+
       - name: Build
         run: npm run build
+
+      - name: Fix paths in built files
+        run: |
+          find dist -type f -name "*.html" -exec sed -i 's|type="module" crossorigin|type="module"|g' {} \;
+          find dist -type f -name "*.html" -exec sed -i 's|/assets/|./assets/|g' {} \;
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4

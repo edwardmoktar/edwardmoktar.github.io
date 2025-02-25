@@ -2,13 +2,41 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Edward's Portfolio</title>
     <meta name="description" content="Product Designer, UI/UX Designer, and Developer portfolio" />
+    <script type="module">
+      // GitHub Pages MIME type fix for ES modules
+      // This checks if we're on GitHub Pages and applies a workaround for the MIME type issue
+      const isGitHubPages = window.location.hostname.includes('github.io');
+      if (isGitHubPages) {
+        const scriptTag = document.createElement('script');
+        scriptTag.type = 'module';
+        
+        // This will find the actual script path from the error in the console
+        window.addEventListener('error', function(event) {
+          if (event.filename && event.filename.includes('.js') && !document.querySelector(`script[src="${event.filename}"]`)) {
+            scriptTag.src = event.filename;
+            document.head.appendChild(scriptTag);
+          }
+        }, true);
+        
+        // Force a load attempt that will fail with the correct path
+        const tempScript = document.createElement('script');
+        tempScript.type = 'module';
+        tempScript.src = './src/main.tsx';
+        document.head.appendChild(tempScript);
+      } else {
+        // Normal loading
+        const script = document.createElement('script');
+        script.type = 'module';
+        script.src = '/src/main.tsx';
+        document.head.appendChild(script);
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
