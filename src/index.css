@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -9,9 +8,9 @@
   :root {
     --background: 39 38% 93%;
     --foreground: 32 40% 25%;
-    --card: 35 35% 98%;
+    --card: 39 38% 95%;
     --card-foreground: 32 40% 25%;
-    --popover: 35 35% 98%;
+    --popover: 39 38% 95%;
     --popover-foreground: 32 40% 25%;
     --primary: 27 96% 61%;
     --primary-foreground: 35 40% 98%;
@@ -62,8 +61,7 @@ body {
 
 :root:not(.dark) body {
   background-image: 
-    repeating-linear-gradient(45deg, rgba(254, 198, 161, 0.03) 0px, rgba(254, 198, 161, 0.03) 2px, transparent 2px, transparent 20px),
-    linear-gradient(135deg, rgba(254, 198, 161, 0.05) 0%, rgba(254, 247, 205, 0.05) 100%);
+    repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.01) 0px, rgba(0, 0, 0, 0.01) 2px, transparent 2px, transparent 20px);
 }
 
 :root.dark body {
@@ -74,12 +72,7 @@ body {
 }
 
 .glass {
-  @apply backdrop-blur-lg border;
-  background: linear-gradient(
-    rgba(255, 255, 255, 0.05),
-    rgba(255, 255, 255, 0.02)
-  );
-  border-color: rgba(255, 255, 255, 0.1);
+  @apply backdrop-blur-lg border bg-background/95;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
@@ -261,6 +254,11 @@ html {
 }
 
 .dark .path-card {
+  @apply bg-card/80 backdrop-blur-sm border-border/50;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+.dark .path-card {
   background-color: #232731;
   border-color: rgba(255, 255, 255, 0.1);
 }
@@ -290,3 +288,14 @@ html {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
 }
 
+.bg-card {
+  @apply bg-background/95 backdrop-blur-sm;
+}
+
+[data-radix-popper-content-wrapper] > * {
+  @apply bg-background/95 backdrop-blur-sm;
+}
+
+.dark [data-radix-popper-content-wrapper] > * {
+  background-color: #232731;
+}
