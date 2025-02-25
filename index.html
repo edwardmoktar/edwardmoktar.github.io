@@ -6,7 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Edward's Portfolio</title>
     <meta name="description" content="Product Designer, UI/UX Designer, and Developer portfolio" />
-    <script type="module" src="../assets/index.DeqXxIBG.js"></script>
+    <script>
+      // Fix for GitHub Pages MIME type issues
+      document.addEventListener('DOMContentLoaded', function() {
+        // Find all script elements in the built HTML
+        const mainScript = document.createElement('script');
+        mainScript.setAttribute('defer', '');
+        mainScript.setAttribute('src', './assets/index-*.js');
+        
+        // Use a simple regex to match the script filename pattern
+        fetch('./')
+          .then(response => response.text())
+          .then(html => {
+            const matches = html.match(/assets\/index-[a-zA-Z0-9]+\.js/g);
+            if (matches && matches.length > 0) {
+              mainScript.setAttribute('src', './' + matches[0]);
+              document.body.appendChild(mainScript);
+            }
+          });
+      });
+    </script>
   </head>
   <body>
     <div id="root"></div>
