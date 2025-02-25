@@ -1,69 +1,102 @@
-# Welcome to your Lovable project
 
-## Project info
+# Edward's Portfolio Website
 
-**URL**: https://lovable.dev/projects/8685b4e4-8147-416e-8527-5c3754b44cad
+This is a professional portfolio website showcasing my work as a Product Designer, UI/UX Designer, and Developer. The website features a modern, responsive design with smooth transitions and interactive elements, built using React, TypeScript, and Tailwind CSS.
 
-## How can I edit this code?
+## Sections
 
-There are several ways of editing your application.
+### Home Page
+The landing page introduces visitors to my professional identity with:
+- A dynamic hero section featuring my roles: Product Designer, UI/UX Designer, and Developer
+- Company collaborations showcase
+- Two mission statements highlighting my approach to:
+  - Bridging Creativity and Functionality
+  - Designing for Impact and Innovation
+- Interactive project carousels demonstrating my work
+- A call-to-action leading to my professional journey
 
-**Use Lovable**
+### Path Page
+A comprehensive overview of my professional journey, featuring:
+- Three main navigation cards highlighting key aspects of my career path
+- Detailed career progression sections
+- Interactive cards with hover effects
+- Seamless navigation between different career stages
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/8685b4e4-8147-416e-8527-5c3754b44cad) and start prompting.
+### Projects Page
+A showcase of my professional work, including:
+- Portfolio of completed projects
+- Project details and descriptions
+- Interactive project cards with visual previews
+- Case studies of significant work
 
-Changes made via Lovable will be committed automatically to this repo.
+### Skills Page
+A detailed breakdown of my technical and professional capabilities:
+- Timeline of skill acquisition and development
+- Technology stack expertise
+- Professional certifications and achievements
+- Interactive skill badges with detailed information
+- Hover cards with additional context about each skill
 
-**Use your preferred IDE**
+### Contact Page
+A dedicated section for professional connections:
+- Contact information
+- Professional social media links
+- Method to reach out for collaborations
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Interactive Features
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Theme Toggle
+- Supports both light and dark mode
+- Customized color schemes for both modes
+- Smooth transition between themes
+- Persists user preference across sessions
 
-Follow these steps:
+### Responsive Design
+- Fully responsive layout adapting to all screen sizes
+- Mobile-friendly navigation
+- Optimized images and assets
+- Smooth animations and transitions
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Navigation
+- Clean, intuitive navigation menu
+- Smooth scrolling between sections
+- Breadcrumb navigation where applicable
+- Mobile-responsive menu
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## Technical Stack
 
-# Step 3: Install the necessary dependencies.
-npm i
+- React with TypeScript
+- Tailwind CSS for styling
+- Framer Motion for animations
+- shadcn/ui component library
+- Responsive design principles
+- Modern web development practices
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+## Design Features
 
-**Edit a file directly in GitHub**
+### Light Mode
+- Clean, professional aesthetic
+- Subtle patterns and shadows
+- High contrast for readability
+- Warm, welcoming color palette
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Dark Mode
+- Sophisticated dark theme
+- Enhanced readability for night viewing
+- Custom background effects
+- Carefully selected color contrasts
 
-**Use GitHub Codespaces**
+## Getting Started
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+To view the portfolio:
+1. Visit the live website
+2. Navigate through different sections using the main menu
+3. Toggle between light and dark modes using the theme switch
+4. Interact with various elements to discover more information
 
-## What technologies are used for this project?
+For developers interested in the codebase:
+1. Clone the repository
+2. Install dependencies with `npm install`
+3. Run the development server with `npm run dev`
+4. View the site locally at `http://localhost:5173`
 
-This project is built with .
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/8685b4e4-8147-416e-8527-5c3754b44cad) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
