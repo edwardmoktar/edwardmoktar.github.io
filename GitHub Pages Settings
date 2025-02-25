@@ -1,0 +1,5 @@
+1. Confirm repository name is exactly "edwardmoktar.github.io"
+2. Go to Settings > Pages
+3. Ensure source is set to your main branch (or gh-pages branch if using that workflow)
+4. Check if a custom domain is configured (if applicable)
+5. Look for any error messages in the GitHub Pages section 
