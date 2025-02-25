@@ -62,7 +62,9 @@ body {
 
 /* Basic utility classes that are used across pages */
 .path-card {
-  @apply bg-card text-card-foreground rounded-lg border shadow-sm;
+  background-color: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+  @apply rounded-lg border shadow-sm;
 }
 
 .glass {
@@ -131,13 +133,12 @@ body {
 
 .path-navigation-card {
   @apply px-6 py-3 rounded-lg transition-all duration-300 w-full h-full min-h-[120px] border 
-  hover:shadow-lg hover:scale-[1.02] hover:border-primary/50 bg-card;
-}
-
-.bg-card {
-  @apply bg-card text-card-foreground;
+  hover:shadow-lg hover:scale-[1.02] hover:border-primary/50;
+  background-color: hsl(var(--card));
+  color: hsl(var(--card-foreground));
 }
 
 [data-radix-popper-content-wrapper] > * {
-  @apply bg-card text-card-foreground;
+  background-color: hsl(var(--card));
+  color: hsl(var(--card-foreground));
 }
