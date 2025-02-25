@@ -13,6 +13,19 @@ export default defineConfig(({ mode }) => ({
     react(),
     mode === 'development' &&
     componentTagger(),
+    {
+      name: 'html-transform',
+      transformIndexHtml(html) {
+        // For production builds, add special handling for GitHub Pages
+        if (mode === 'production') {
+          return html.replace(
+            /<script type="module" crossorigin src="\/assets\//g,
+            '<script type="module" crossorigin src="./assets/'
+          );
+        }
+        return html;
+      },
+    }
   ].filter(Boolean),
   resolve: {
     alias: {
