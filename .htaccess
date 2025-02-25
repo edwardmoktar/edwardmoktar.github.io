@@ -1,0 +1,9 @@
+# Serve .js files as JavaScript modules
+<FilesMatch "\.js$">
+  Header set Content-Type "application/javascript"
+</FilesMatch>
+
+# Ensure JS modules are properly served
+<IfModule mod_mime.c>
+  AddType application/javascript js mjs
+</IfModule> 
