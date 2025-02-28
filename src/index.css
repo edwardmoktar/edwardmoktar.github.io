@@ -6,33 +6,48 @@
 
 @layer base {
   :root {
-    --background: 34 33% 95%;  /* Light beige background */
+    --background: 34 20% 96%;  /* #F6F3EE */
     --foreground: 20 25% 33%;  /* Dark brown text */
     --card: 34 33% 99%;
     --card-foreground: 20 25% 33%;
     --primary: 20 25% 33%;     /* Dark brown */
-    --primary-foreground: 34 33% 95%;
+    --primary-foreground: 34 20% 96%;  /* #F6F3EE */
     --muted: 34 33% 90%;
     --muted-foreground: 20 25% 45%;
-    --border: 20 25% 85%;
+    --border: 34 20% 96%;      /* Light border based on #F6F3EE */
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
+    --background: 225 60% 8%;  /* #020817CC - exact dark blue color */
+    --foreground: 210 40% 98%; /* Light text */
+    --card: 224 76% 12%;       /* Slightly lighter blue for cards */
     --card-foreground: 210 40% 98%;
     --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary-foreground: 225 60% 8%; /* Dark blue background */
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-    --border: 217.2 32.6% 17.5%;
+    --border: 225 60% 8%;      /* Border matches background in dark mode */
+  }
+
+  html {
+    scroll-behavior: smooth;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-[#F6F3EE] dark:bg-[#020817] text-foreground antialiased;
     font-family: 'Inter', sans-serif;
+    min-height: 100%;
+    position: relative;
+    overflow-x: hidden;
   }
+}
+
+/* Ensure content has proper padding for fixed navbar */
+.page-content {
+  padding-top: 60px; /* Match navbar height */
 }
 
 /* Wave animation */
@@ -371,7 +386,7 @@ html {
 
 .dark .path-card {
   background-color: #232731;
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: #020817CC;
 }
 
 .dark .path-page {
@@ -391,12 +406,12 @@ html {
 
 .dark .path-navigation-card {
   background-color: #232731;
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: #020817CC;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
 }
 
 .dark .path-navigation-card:hover {
-  border-color: rgba(255, 255, 255, 0.2);
+  border-color: #020817CC;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
 }
 
@@ -419,8 +434,7 @@ html {
 }
 
 :root:not(.dark) body {
-  background-image: 
-    repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.01) 0px, rgba(0, 0, 0, 0.01) 2px, transparent 2px, transparent 20px);
+  background-color: #f8f7f5;
 }
 
 :root.dark body {
@@ -440,7 +454,7 @@ html {
     rgba(43, 43, 40, 0.7),
     rgba(58, 46, 43, 0.7)
   );
-  border-color: rgba(255, 255, 255, 0.05);
+  border-color: #020817CC;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
 }
 
@@ -483,4 +497,303 @@ html {
     transform: translateX(0);
     opacity: 1;
   }
+}
+
+/* Folder Navigation Styles */
+.folder-navigation-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.folder-tab {
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, background-color 0.2s ease-out;
+  user-select: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.folder-tab:hover {
+  transform: translateY(-4px);
+}
+
+.folder-icon {
+  transition: transform 0.3s ease;
+}
+
+.folder-content-area {
+  transition: background-color 0.2s ease-out, border-color 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.folder-content-inner {
+  transform-style: preserve-3d;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari, Opera */
+}
+
+/* Card Highlight Styles */
+.card-highlight {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  flex: 1 0 30%;
+  margin: 0.25rem;
+  min-width: 120px;
+  max-width: calc(33.33% - 0.5rem);
+  text-align: center;
+}
+
+.card-highlight .text-primary {
+  color: #f0c040;
+}
+
+.light .card-highlight {
+  background-color: rgba(140, 109, 79, 0.1);
+  border: 1px solid rgba(140, 109, 79, 0.2);
+}
+
+.light .card-highlight .text-primary {
+  color: #594126;
+}
+
+/* Card styles for content inside folders */
+.folder-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  transition: all 0.2s ease-out;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+.folder-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.dark .folder-card {
+  background-color: #1a2338;  /* Dark blue background - slightly lighter than page bg */
+  border-color: #020817CC;      /* Dark blue border */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dark .folder-card:hover {
+  background-color: #20304f;  /* Slightly lighter on hover */
+  border-color: #020817CC;      /* Dark blue border */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.folder-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.folder-card-title {
+  font-weight: 600;
+  font-size: 1.125rem;
+  margin-bottom: 0.25rem;
+  color: var(--text-primary);
+}
+
+.folder-card-subtitle {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.folder-card-content {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+.folder-card-footer {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.folder-card-tag {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  background-color: var(--tag-bg);
+  color: var(--tag-text);
+}
+
+/* Expandable card styles */
+.expandable-card {
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.expandable-card-content {
+  overflow: hidden;
+  transition: all 0.3s ease-out;
+}
+
+/* Path page background */
+.path-hero {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Ensure folder content has proper spacing */
+.folder-content {
+  padding: 1.5rem;
+  min-height: 300px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .folder-tab {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  .folder-content {
+    padding: 1rem;
+  }
+}
+
+/* Collapsible content animations */
+.collapsible-content {
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+/* Card styles */
+.experience-card, .education-card, .volunteering-card, .misc-card {
+  transition: all 0.3s ease;
+}
+
+.experience-card:hover, .education-card:hover, .volunteering-card:hover, .misc-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Folder content styles */
+.folder-content-inner {
+  min-height: 200px;
+}
+
+/* Path page background */
+.path-page-bg {
+  background-image: radial-gradient(circle at 50% 50%, var(--background) 0%, var(--muted) 100%);
+  opacity: 0.8;
+}
+
+/* Consistent colors with home page */
+.dark .folder-icon,
+.dark .folder-title,
+.dark .section-title {
+  color: #4d78cc;  /* Brighter blue for icons */
+}
+
+.light .folder-icon,
+.light .folder-title,
+.light .section-title {
+  color: #594126;
+}
+
+/* Metric cards hover effect */
+.metric-card {
+  transition: all 0.2s ease;
+}
+
+.metric-card:hover {
+  transform: scale(1.05);
+}
+
+/* Dark Mode Folder Navigation Styles */
+.dark .folder-tab {
+  background-color: #161c2e;  /* Dark navy */
+  color: #e0e0ff;             /* Light blue-white text */
+  border-color: #020817CC;      /* Dark blue border */
+}
+
+.dark .folder-tab.active {
+  background-color: #1d2942;  /* Medium navy blue */
+  border-bottom-color: #020817CC;  /* Dark blue border */
+}
+
+.dark .folder-tab:not(.active) {
+  border-bottom-color: #020817CC;  /* Dark blue border */
+}
+
+.dark .folder-card-header {
+  border-bottom-color: #020817CC;  /* Dark blue border */
+}
+
+.dark .folder-card-title {
+  color: #f0c040;  /* Keep the gold for titles */
+}
+
+.dark .folder-icon {
+  transition: transform 0.3s ease;
+  color: #5d88dc;  /* Brighter blue for icons */
+  filter: drop-shadow(0 0 8px rgba(93, 136, 220, 0.3));
+}
+
+.dark .folder-card:hover .folder-icon {
+  transform: translateY(-2px);
+}
+
+.dark .folder-title {
+  color: #f0c040;  /* Gold for titles */
+  text-shadow: 0 0 10px rgba(240, 192, 64, 0.3);
+}
+
+.dark .section-title {
+  color: #f0c040;  /* Gold for titles */
+}
+
+/* Card Highlights - Dark Mode */
+.dark .card-highlight {
+  background-color: #253353;  /* Medium dark blue */
+  border-color: #020817CC;      /* Dark blue border */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.dark .card-highlight:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border-color: #020817CC;
+}
+
+.dark .card-highlight span.text-primary {
+  color: #6d9eff;  /* Light blue for metrics */
+  text-shadow: 0 0 8px rgba(109, 158, 255, 0.3);
+}
+
+.dark h2.text-3xl.font-bold {
+  color: #ffffff !important;  /* White for CTA headers in dark mode */
+}
+
+.folder-tabs {
+  display: flex;
+  border-bottom: 2px solid #e5e5e5;
+  margin-bottom: 1rem;
+}
+
+.dark .folder-tabs {
+  border-bottom: 2px solid #020817CC;
 }

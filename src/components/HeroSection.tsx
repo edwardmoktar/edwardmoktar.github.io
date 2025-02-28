@@ -66,7 +66,7 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground py-8 md:py-16 px-4 font-sf">
+    <div className="flex flex-col items-center justify-center min-h-screen text-foreground py-8 md:py-16 px-4 font-sf">
       {/* Profile Image */}
       <div className="relative w-24 h-24 md:w-32 md:h-32 mb-6">
         <img
