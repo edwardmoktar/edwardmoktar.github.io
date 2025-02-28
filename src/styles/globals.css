@@ -1,0 +1,143 @@
+// Add this to your global CSS for the wave animation
+@keyframes wave {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(14deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+  60% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.wave {
+  animation: wave 2.5s infinite;
+  transform-origin: 70% 70%;
+  display: inline-block;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --border: 214.3 31.8% 91.4%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --border: 217.2 32.6% 17.5%;
+  }
+
+  html {
+    font-family: -apple-system, 'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased font-sf;
+  }
+}
+
+@layer utilities {
+  .carousel-transition {
+    transition: transform 0.5s ease-in-out;
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.logo-scroll {
+  animation: scroll 30s linear infinite;
+}
+
+/* Add pause on hover */
+.animate-scroll.hover\:pause:hover {
+  animation-play-state: paused;
+}
+
+/* Add smooth transition for hover effects */
+.animate-scroll img {
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: all 0.3s ease-in-out;
+}
+
+.animate-scroll img:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+.scroll-container {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  width: 100%;
+}
+
+.scroll-content {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll 20s linear infinite;
+}
+
+.scroll-content > div {
+  display: inline-block;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Remove any old marquee or carousel styles */
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+
+@keyframes carousel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-carousel {
+  animation: carousel 30s linear infinite;
+  width: fit-content;
+}
+
+/* Optional: Pause animation on hover */
+.animate-carousel:hover {
+  animation-play-state: paused;
+} 
