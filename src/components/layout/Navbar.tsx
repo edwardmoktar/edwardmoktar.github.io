@@ -30,10 +30,10 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { path: '/', label: 'Home' },
-    { path: '/path', label: 'Path' },
-    { path: '/projects', label: 'Projects' },
-    { path: '/skills', label: 'Skills' },
+    { path: '/', label: '-home' },
+    { path: '/path', label: '/path' },
+    { path: '/projects', label: '{projects}' },
+    { path: '/skills', label: '$kills' },
   ];
 
   return (
@@ -41,7 +41,7 @@ export default function Navbar() {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between md:justify-center">
           <Link to="/" className="text-xl font-semibold hover-lift md:hidden">
-            Edward M.
+            {"{ed}"}
           </Link>
 
           {/* Desktop Navigation */}
@@ -55,18 +55,10 @@ export default function Navbar() {
               variant="ghost"
               size="icon"
               onClick={toggleDarkMode}
-              className="hover-lift"
+              className="theme-toggle-btn"
             >
-              <div className={`transform transition-transform duration-300 ${isDark ? 'scale-100' : 'scale-0'} absolute`}>
-                <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
-                  <path
-                    d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"
-                    fill="currentColor"
-                    className="transform origin-center transition-all duration-500"
-                  />
-                </svg>
-              </div>
-              <div className={`transform transition-transform duration-300 ${!isDark ? 'scale-100' : 'scale-0'} ${isDark ? 'opacity-0' : 'opacity-100'}`}>
+              {/* Sun icon - visible in light mode */}
+              <div className={`absolute transition-all duration-300 ${!isDark ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`}>
                 <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
                   <circle cx="12" cy="12" r="4" fill="currentColor" />
                   <path
@@ -75,7 +67,16 @@ export default function Navbar() {
                     strokeWidth="1.5"
                     strokeLinecap="round"
                     strokeDasharray="2 2"
-                    className="transform origin-center transition-all duration-500"
+                  />
+                </svg>
+              </div>
+              
+              {/* Moon icon - visible in dark mode */}
+              <div className={`absolute transition-all duration-300 ${isDark ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`}>
+                <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6 text-[#f0c040]">
+                  <path
+                    d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"
+                    fill="currentColor"
                   />
                 </svg>
               </div>
@@ -96,17 +97,10 @@ export default function Navbar() {
               variant="ghost"
               size="icon"
               onClick={toggleDarkMode}
+              className="theme-toggle-btn"
             >
-              <div className={`transform transition-transform duration-300 ${isDark ? 'scale-100' : 'scale-0'} absolute`}>
-                <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
-                  <path
-                    d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"
-                    fill="currentColor"
-                    className="transform origin-center transition-all duration-500"
-                  />
-                </svg>
-              </div>
-              <div className={`transform transition-transform duration-300 ${!isDark ? 'scale-100' : 'scale-0'} ${isDark ? 'opacity-0' : 'opacity-100'}`}>
+              {/* Sun icon - visible in light mode */}
+              <div className={`absolute transition-all duration-300 ${!isDark ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`}>
                 <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
                   <circle cx="12" cy="12" r="4" fill="currentColor" />
                   <path
@@ -115,7 +109,16 @@ export default function Navbar() {
                     strokeWidth="1.5"
                     strokeLinecap="round"
                     strokeDasharray="2 2"
-                    className="transform origin-center transition-all duration-500"
+                  />
+                </svg>
+              </div>
+              
+              {/* Moon icon - visible in dark mode */}
+              <div className={`absolute transition-all duration-300 ${isDark ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`}>
+                <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6 text-[#f0c040]">
+                  <path
+                    d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"
+                    fill="currentColor"
                   />
                 </svg>
               </div>
