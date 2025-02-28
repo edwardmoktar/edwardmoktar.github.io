@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTheme } from 'next-themes';
 
 const HeroSection = () => {
   const companies = [
@@ -11,29 +12,14 @@ const HeroSection = () => {
     { name: "LV", logo: "/images/6-lv.png" },
   ];
 
-  // State to track dark mode
+  // Use next-themes hook instead of manual DOM manipulation
+  const { theme, resolvedTheme } = useTheme();
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   // Effect to detect and update dark mode state
   useEffect(() => {
-    // Initial check
-    setIsDarkMode(document.documentElement.classList.contains('dark'));
-
-    // Set up observer to watch for class changes on html element
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.attributeName === 'class') {
-          setIsDarkMode(document.documentElement.classList.contains('dark'));
-        }
-      });
-    });
-
-    observer.observe(document.documentElement, { attributes: true });
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
+    setIsDarkMode(theme === 'dark' || resolvedTheme === 'dark');
+  }, [theme, resolvedTheme]);
 
   const CompaniesSection = () => {
     return (

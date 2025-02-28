@@ -8,10 +8,11 @@ import { useTheme } from 'next-themes';
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { toast } = useToast();
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
 
   const toggleDarkMode = () => {
-    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    const currentTheme = resolvedTheme || theme;
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
 
     toast({
