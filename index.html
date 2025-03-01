@@ -1,11 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Edward's Portfolio</title>
     <meta name="description" content="Product Designer, UI/UX Designer, and Developer portfolio" />
+    <!-- Theme initialization script -->
+    <script>
+      // This script prevents flash of wrong theme
+      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+      try {
+        // Check if theme was set previously
+        let theme = localStorage.getItem('theme');
+        
+        // If no theme was set, default to light
+        if (!theme) {
+          // If user prefers dark mode
+          if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            theme = 'dark';
+          } else {
+            theme = 'light'; // Default to light theme
+          }
+        }
+        
+        // Apply the theme
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light');
+        } else {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+        }
+      } catch (e) {
+        console.error('Theme initialization error:', e);
+      }
+    </script>
     <!-- GitHub Pages redirect script for SPA routing -->
     <script type="text/javascript">
       (function(l) {

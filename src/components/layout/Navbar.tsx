@@ -1,30 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Moon, Sun } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
+import { useTheme } from 'next-themes';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false);
   const { toast } = useToast();
-
-  useEffect(() => {
-    const isDarkMode = localStorage.getItem('darkMode') === 'true';
-    setIsDark(isDarkMode);
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-    }
-  }, []);
+  const { theme, setTheme, resolvedTheme } = useTheme();
 
   const toggleDarkMode = () => {
-    const newMode = !isDark;
-    setIsDark(newMode);
-    localStorage.setItem('darkMode', String(newMode));
-    document.documentElement.classList.toggle('dark');
+    const currentTheme = resolvedTheme || theme;
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
 
     toast({
-      title: `Switched to ${newMode ? 'dark' : 'light'} mode`,
+      title: `Switched to ${newTheme} mode`,
       duration: 1500,
     });
   };
@@ -37,8 +29,9 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b">
-      <div className="container mx-auto px-6 py-4">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#F6F3EE]/80 dark:bg-[#020817]/80 backdrop-blur-lg border-b border-[#F6F3EE] dark:border-[#020817] h-[60px] flex items-center">
+
+      <div className="container mx-auto px-6">
         <div className="flex items-center justify-between md:justify-center">
           <Link to="/" className="text-xl font-semibold hover-lift md:hidden">
             {"{ed}"}
@@ -58,27 +51,13 @@ export default function Navbar() {
               className="theme-toggle-btn"
             >
               {/* Sun icon - visible in light mode */}
-              <div className={`absolute transition-all duration-300 ${!isDark ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`}>
-                <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
-                  <circle cx="12" cy="12" r="4" fill="currentColor" />
-                  <path
-                    d="M12 2v2m0 16v2M4 12H2m20 0h-2m-2.828-7.172l-1.414 1.414M6.242 17.758l-1.414 1.414m0-12.344l1.414 1.414m11.102 9.516l1.414 1.414"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeDasharray="2 2"
-                  />
-                </svg>
+              <div className={`absolute transition-all duration-300 ${theme !== 'dark' ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`}>
+                <Sun className="h-6 w-6" />
               </div>
               
               {/* Moon icon - visible in dark mode */}
-              <div className={`absolute transition-all duration-300 ${isDark ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`}>
-                <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6 text-[#f0c040]">
-                  <path
-                    d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"
-                    fill="currentColor"
-                  />
-                </svg>
+              <div className={`absolute transition-all duration-300 ${theme === 'dark' ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`}>
+                <Moon className="h-6 w-6 text-[#f0c040]" />
               </div>
             </Button>
           </div>
@@ -100,27 +79,13 @@ export default function Navbar() {
               className="theme-toggle-btn"
             >
               {/* Sun icon - visible in light mode */}
-              <div className={`absolute transition-all duration-300 ${!isDark ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`}>
-                <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
-                  <circle cx="12" cy="12" r="4" fill="currentColor" />
-                  <path
-                    d="M12 2v2m0 16v2M4 12H2m20 0h-2m-2.828-7.172l-1.414 1.414M6.242 17.758l-1.414 1.414m0-12.344l1.414 1.414m11.102 9.516l1.414 1.414"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeDasharray="2 2"
-                  />
-                </svg>
+              <div className={`absolute transition-all duration-300 ${theme !== 'dark' ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`}>
+                <Sun className="h-6 w-6" />
               </div>
               
               {/* Moon icon - visible in dark mode */}
-              <div className={`absolute transition-all duration-300 ${isDark ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`}>
-                <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6 text-[#f0c040]">
-                  <path
-                    d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"
-                    fill="currentColor"
-                  />
-                </svg>
+              <div className={`absolute transition-all duration-300 ${theme === 'dark' ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`}>
+                <Moon className="h-6 w-6 text-[#f0c040]" />
               </div>
             </Button>
           </div>

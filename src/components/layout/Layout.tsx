@@ -1,4 +1,3 @@
-
 import { ReactNode } from 'react';
 import Navbar from './Navbar';
 
@@ -8,11 +7,9 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#F6F3EE] dark:bg-[#020817] text-foreground">
       <Navbar />
-      <main className="pt-20">
-        {children}
-      </main>
+      <main className="page-content">{children}</main>
     </div>
   );
 }
