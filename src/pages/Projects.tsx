@@ -493,7 +493,7 @@ export default function Projects() {
                   >
                     {/* Portrait Card Design inspired by reference image */}
                     <div 
-                      className="relative h-[500px] overflow-hidden cursor-pointer group project-card-new hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-transparent dark:bg-transparent rounded-xl border border-border/20"
+                      className="relative h-[500px] overflow-hidden cursor-pointer group project-card-new hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-card dark:bg-[#0c0c14] rounded-xl border border-border/20"
                       onClick={() => setSelectedProject(project)}
                       onKeyDown={(e) => {
                         if (e.key === 'Enter' || e.key === ' ') {
@@ -542,7 +542,7 @@ export default function Projects() {
 
                             {/* Background match when image disappears */}
                             <div 
-                              className={`absolute inset-0 bg-background transition-opacity duration-500 ease-in-out ${
+                              className={`absolute inset-0 bg-card dark:bg-[#0c0c14] transition-opacity duration-500 ease-in-out ${
                                 hoveredProjectId === project.id ? 'opacity-100' : 'opacity-0'
                               }`}
                             />
